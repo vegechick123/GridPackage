@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4ce9a5f8703613b4ab3fc2180db70ece, type: 3}
-  m_Name: GFloorBrush
+  m_Name: GFloorRoadBrush
   m_EditorClassIdentifier: 
   m_Cells:
   - m_Tile: {fileID: 0}
