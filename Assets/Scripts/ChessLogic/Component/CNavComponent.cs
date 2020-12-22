@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-public class CNavComponent : Component
+public class CNavComponent : MyComponent
 {
     [HideInInspector]
     public NavInfo navInfo;

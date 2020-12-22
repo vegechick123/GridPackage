@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Component : MonoBehaviour
+public class MyComponent : MonoBehaviour
 {
     [HideInInspector]
     public GChess chess;

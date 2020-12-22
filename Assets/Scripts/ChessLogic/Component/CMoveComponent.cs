@@ -9,7 +9,7 @@ public enum MoveState
     Moving,
     Throwing
 }
-public class CMoveComponent : Component
+public class CMoveComponent : MyComponent
 {
 
     public MoveState state { get; private set; }

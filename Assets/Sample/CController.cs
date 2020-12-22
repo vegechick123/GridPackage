@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CController : Component
+public class CController : MyComponent
 {
     
     void Update()
