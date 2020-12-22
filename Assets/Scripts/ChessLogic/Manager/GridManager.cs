@@ -14,9 +14,9 @@ public class GridManager : Manager<GridManager>
     public Grid grid;
     [Tooltip("被实例化的Chess的父物体")]
     public Transform chessContainer;
-    [Tooltip("Chess在y轴上的便宜")]
+    [Tooltip("Chess在y轴上的偏移")]
     public float chessOffset;
-    [Tooltip("Floor在y轴上的便宜")]
+    [Tooltip("Floor在y轴上的偏移")]
     public float floorOffset;
     //用二维数组存储Floor
     protected GFloor[,] floors;
@@ -301,6 +301,25 @@ public class GridManager : Manager<GridManager>
                 res.Enqueue(nowpos);
         }
         return res.ToArray();
+    }
+    /// <summary>
+    /// 获得周围敌人可以走动的范围
+    /// </summary>
+    /// <returns></returns>
+    public Vector2Int[] GetEnemyPath(Vector2Int currentLocation)
+    { 
+        List<Vector2Int> output=new List<Vector2Int>();
+        foreach(var location in GetCircleRange(currentLocation, 1))
+        {
+            if (GetFloor(location) != null)
+            {
+                if (GetFloor(location).floorType == GFloor.FloorType.the_enemy_path)
+                {
+                    output.Add(location);
+                } 
+            }
+        }
+        return output.ToArray();
     }
     #endregion 
     public GChess InstansiateChessAt(GameObject prefab, Vector2Int location)

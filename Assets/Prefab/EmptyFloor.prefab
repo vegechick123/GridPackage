@@ -46,3 +46,8 @@ MonoBehaviour:
   location: {x: 0, y: 0}
   render: {fileID: 0}
   transitable: 1
+  floorType: 1
+  north: {fileID: 0}
+  east: {fileID: 0}
+  south: {fileID: 0}
+  west: {fileID: 0}
