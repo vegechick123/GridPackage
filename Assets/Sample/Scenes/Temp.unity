@@ -6650,6 +6650,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
         type: 3}
+    - target: {fileID: 3956520010573083714, guid: 769ae75a48cbb964a83aa1da68ec0f41,
+        type: 3}
+      propertyPath: chessOffset
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 769ae75a48cbb964a83aa1da68ec0f41, type: 3}
 --- !u!4 &3956520009759073784 stripped

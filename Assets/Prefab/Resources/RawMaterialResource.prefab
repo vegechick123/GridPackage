@@ -46,13 +46,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   location: {x: 1, y: 2}
   render: {fileID: 0}
+  chessType: 2
   eLocationChange:
     m_PersistentCalls:
       m_Calls: []
   navComponent: {fileID: 0}
   moveComponent: {fileID: 0}
+  type: 1
+  canGather: 1
+  projectile: 0
   needMaterialCount: 5
-  needMaterialType: 0
+  needMaterialType: 1
 --- !u!1 &4434518854510004777
 GameObject:
   m_ObjectHideFlags: 0

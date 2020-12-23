@@ -46,12 +46,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   location: {x: 0, y: 0}
   render: {fileID: 0}
+  chessType: 0
   eLocationChange:
     m_PersistentCalls:
       m_Calls: []
   navComponent: {fileID: 0}
   moveComponent: {fileID: 0}
+  AtkRange: 0
   direction: 0
+  atkSpeed: 0
   gatherDeltaTime: 3
   onGatherComplete:
     m_PersistentCalls:
@@ -118,11 +121,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -1295720700181080584, guid: 13b257807d054b448ad3a2419c5438ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 455266b1165d9e9448dcd9d2a432fb40, type: 2}
     - target: {fileID: 919132149155446097, guid: 13b257807d054b448ad3a2419c5438ad,
         type: 3}
       propertyPath: m_Name
       value: Turret01
       objectReference: {fileID: 0}
+    - target: {fileID: 4940012688948900141, guid: 13b257807d054b448ad3a2419c5438ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 7061ca51d87d77e4d8b2aca93e4e7593, type: 2}
+    - target: {fileID: 6663057054005400972, guid: 13b257807d054b448ad3a2419c5438ad,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 649653ae2ec18e4489bd5503785f0048, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 13b257807d054b448ad3a2419c5438ad, type: 3}
 --- !u!4 &7382495797385356483 stripped

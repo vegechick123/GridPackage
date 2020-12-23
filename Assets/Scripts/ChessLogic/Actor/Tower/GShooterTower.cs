@@ -75,13 +75,12 @@ public class GShooterTower : GTower, IReceiveable
     protected override void Awake()
     {
         base.Awake();
+    }
+    void Start()
+    {
         ownResourse = GridManager.instance.GetResourcesType(location);
         if (ownResourse == ResourceType.RawMaterial)
             onGatherComplete.AddListener(() => EnemySearch());
-
-        if (GridManager.instance.GetResources(location) != null)
-            ownResourse = GridManager.instance.GetResources(location).type;
-        
     }
     void Update()
     {
