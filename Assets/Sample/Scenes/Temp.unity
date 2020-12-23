@@ -7169,12 +7169,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3012302becd29479090801fce0b9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyA: j
-  KeyB: 
-  KeyC: 
-  KeyD: 
-  KeyE: 
-  KeyF: 
+  KeyPickUp: 106
+  KeyPutDown: 107
+  KeyC: 99
+  KeyD: 97
+  KeyE: 256
+  KeyF: 257
   Dup: 0
   Dright: 0
   Dis: 0
