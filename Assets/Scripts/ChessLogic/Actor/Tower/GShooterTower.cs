@@ -54,6 +54,7 @@ public class GShooterTower : GTower, IReceiveable
     /// </summary>
     void EnemySearch()
     {
+        Debug.Log("EnemySearch");
         Vector2Int[] search = GridManager.instance.GetOneRayRange(location, direction.ToVector2(), AtkRange);
         GChess[] chesses = GridManager.instance.GetChessesInRange(search);//攻击范围的棋子
                                                                           //检测这些棋子是 什么？
@@ -88,7 +89,7 @@ public class GShooterTower : GTower, IReceiveable
         currentTime += Time.deltaTime;
         if (currentTime > gatherDeltaTime)
         {
-            currentTime = gatherDeltaTime;
+            currentTime = 0;
             onGatherComplete.Invoke();
         }        
     }
