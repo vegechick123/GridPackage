@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : GChess
 {
     public Vector2 move;
     public float runSpeed;
@@ -11,10 +11,9 @@ public class Player : MonoBehaviour
 
     private PlayerInput playerInput;
     private Vector3 velocity;
-
-
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         playerInput = this.GetComponent<PlayerInput>();
         if (Direction == null)
             Direction = Camera.main.transform;

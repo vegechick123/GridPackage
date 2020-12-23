@@ -2,12 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
-{
-    /// <summary>
-    /// 当前的2Dint坐标，未到达前按为上次坐标
-    /// </summary>
-    public Vector2Int localtion;
+public class Enemy : GChess
+{ 
     /*---------------敌人的基础属性面板-----------------*/
     /// <summary>
     /// 移动速度
@@ -20,8 +16,9 @@ public class Enemy : MonoBehaviour
     [SerializeField]
     private Vector2Int destination;
     /*---------------------------------------------*/
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         InitEnemy(new Vector2Int(2,2),1.0f,10);
     }
     /// <summary>
@@ -29,7 +26,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void InitEnemy(Vector2Int initPos, float speed,int health)
     {
-        localtion = initPos;
+        location = initPos;
         // todo: 坐标BUG
         transform.localPosition = GetChessPosition3D(initPos);
 
@@ -70,19 +67,19 @@ public class Enemy : MonoBehaviour
         while (true)
         {
             //获得可以走动的格子
-            Vector2Int[] targets = GridManager.instance.GetEnemyPath(localtion);
+            Vector2Int[] targets = GridManager.instance.GetEnemyPath(location);
             //选择正确的方向走动，移动一格
             Vector2Int next = GoDir(targets);
             Vector3 nextPos = GetChessPosition3D(next);
-            Vector3 localtionPos = GetChessPosition3D(localtion);
+            Vector3 localtionPos = GetChessPosition3D(location);
             for (float time = 0; time <= 1; time += speed * Time.deltaTime)
             {
                 transform.position = Vector3.Lerp(localtionPos, nextPos, time);
                 yield return null;
             }
             //更新现在的location,迭代进入下一次移动
-            localtion = next;
-            if (localtion == destination)
+            location = next;
+            if (location == destination)
                 yield break;
         }
     }
@@ -95,16 +92,16 @@ public class Enemy : MonoBehaviour
     {
         foreach (Vector2Int vector2 in targets)
         {
-            if (((vector2 - localtion) * (destination - localtion)).x > 0)
+            if (((vector2 - location) * (destination - location)).x > 0)
             {
                 return vector2;
             }
-            else if (((vector2 - localtion) * (destination - localtion)).y > 0)
+            else if (((vector2 - location) * (destination - location)).y > 0)
             {
                 return vector2;
             }
         }
-        return localtion;
+        return location;
     }
     /*--------------------------------------------------------------------*/
     #endregion
