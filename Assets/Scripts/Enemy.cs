@@ -49,6 +49,7 @@ public class Enemy : MonoBehaviour
             output.y + 1,
             output.z);
     }
+    #region 移动
     /*-------------------------------移动-----------------------------------*/
     [ContextMenu("MoveTest")]
     private void MoveTest()
@@ -106,4 +107,5 @@ public class Enemy : MonoBehaviour
         return localtion;
     }
     /*--------------------------------------------------------------------*/
+    #endregion
 }
