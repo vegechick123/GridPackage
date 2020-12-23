@@ -7,7 +7,7 @@ public class PlayerInput : MonoBehaviour
     #region KeyWord
     public KeyCode KeyPickUp;
     public KeyCode KeyPutDown;
-    public KeyCode KeyC;
+    public KeyCode KeyRotation;
     public KeyCode KeyD;
     public KeyCode KeyE;
     public KeyCode KeyF;

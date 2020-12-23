@@ -35,7 +35,7 @@ public class GShooterTower : GTower, IReceiveable
     /// <param name="projectile"></param>
     public void Receive(Projectile projectile)
     {
-        //Shoot(projectile.Reaction(ownResourse));
+        Shoot(projectile.Reaction(ownResourse), EnemySearch());
         Destroy(projectile.gameObject);
     }
     /// <summary>
@@ -44,6 +44,9 @@ public class GShooterTower : GTower, IReceiveable
     /// <param name="projectileType"></param>
     protected void Shoot(ProjectileType projectileType, GameObject target)
     {
+        //TODO:增加没有搜素到敌人时的行为
+        if (target == null)
+            return;
         currentTime = 0;
         Debug.Log(gameObject.name + ":Shoot");
         GameObject origin = PrefabManager.instance.GetProjectilePrefab(projectileType);
@@ -58,23 +61,24 @@ public class GShooterTower : GTower, IReceiveable
     /// <summary>
     /// 敌人搜索
     /// </summary>
-    void EnemySearch()
+    GameObject EnemySearch()
     {
         Debug.Log("EnemySearch");
         Vector2Int[] search = GridManager.instance.GetOneRayRange(location, direction.ToVector2(), AtkRange);
         GChess[] chesses = GridManager.instance.GetChessesInRange(search);//攻击范围的棋子
-                                                                          //检测这些棋子是什么？
+        //检测这些棋子是什么？
         foreach (var chess in chesses)
         {
             if (chess.chessType == ChessType.ememy)
             {
-                Shoot(ProjectileType.NormalBullet, chess.gameObject);
+                return chess.gameObject;
             }
             else if (chess.chessType == ChessType.shooterTower)
             {
-                Shoot(ProjectileType.NormalBullet, chess.gameObject);
+                return chess.gameObject;
             }
         }
+        return null;
     }
     /*---------------------------------------------------------------------------*/
 
@@ -87,7 +91,7 @@ public class GShooterTower : GTower, IReceiveable
     {
         ownResourse = GridManager.instance.GetResourcesType(location);
         if (ownResourse == ResourceType.RawMaterial)
-            onGatherComplete.AddListener(() => EnemySearch());
+            onGatherComplete.AddListener(() =>Shoot(ProjectileType.RawMaterial,EnemySearch()));
     }
     void Update()
     {

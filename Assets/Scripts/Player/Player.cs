@@ -53,9 +53,22 @@ public class Player : GChess
 
         if (Input.GetKeyDown(playerInput.KeyPickUp))
         {
-            Vector2Int select = location + direction.ToVector2();
+            GResource target=GridManager.instance.GetResources(location);
+            if (target != null && target.canGather)
+            {
+                PickUp(target.projectile);
+            }
+        }
+        if(Input.GetKeyDown(playerInput.KeyPutDown))
+        {
+            if (conveyObject!=null)
+                Putdown();
+        }
+        if (Input.GetKeyDown(playerInput.KeyRotation))
+        {
+            Vector2Int select = GetSelectLocation();
             Debug.Log( select );
-            GChess chess = GridManager.instance.GetChess(select);
+            GChess chess = GridManager.instance.GetTower(select);
             if (chess)
             {
                 Debug.Log(chess);
@@ -65,18 +78,24 @@ public class Player : GChess
                 }
             }
         }
+        
     }
     void PickUp(ProjectileType projectileType)
     {
         if (conveyObject)
-            Destroy(conveyObject);
-        conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType),new Vector3(0,0.5f,0),Quaternion.identity,transform).GetComponent<Projectile>();
+            Destroy(conveyObject.gameObject);
+        conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType),transform.position+new Vector3(0,conveyYOffset,0),Quaternion.identity,transform).GetComponent<Projectile>();
+    }
+    Vector2Int GetSelectLocation()
+    {
+        Vector2Int select = location + direction.ToVector2();
+        return select;
     }
     void Putdown()
     {
         if (!conveyObject)
             return;
-        GTower tower = GetComponent<GTower>();
+        GTower tower = GridManager.instance.GetTower(GetSelectLocation());
         if(tower!=null)
         {
             IReceiveable target = tower as IReceiveable;
@@ -88,6 +107,7 @@ public class Player : GChess
             if(conveyObject.type==ProjectileType.BuildingMaterial)
             {
                 Build(location);
+                Destroy(conveyObject.gameObject);
             }
         }
     }

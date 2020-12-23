@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1637216979968913462}
   - component: {fileID: 1637216979968913449}
   m_Layer: 0
-  m_Name: RawMaterialResource
+  m_Name: BuildingMaterialResource
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,7 +136,7 @@ TextMesh:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4434518854510004777}
-  m_Text: "\u539F\u6750\u6599"
+  m_Text: "\u5EFA\u7B51\u6750\u6599"
   m_OffsetZ: 0
   m_CharacterSize: 0.21
   m_LineSpacing: 1
@@ -149,4 +149,4 @@ TextMesh:
   m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
   m_Color:
     serializedVersion: 2
-    rgba: 4294967295
+    rgba: 4278649087

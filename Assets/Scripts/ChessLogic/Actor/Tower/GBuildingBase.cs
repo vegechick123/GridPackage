@@ -1,23 +1,32 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GBuildingBase : GTower,IReceiveable
 {
     protected GResource ownResource;
-
-    protected int currentResourceCount;
-
+    [NonSerialized]
+    protected int currentResourceCount=1;
+    //protected ResourceType ownResource.needMaterialType; 
+    static int normalShooterTowerMaterialCount=2;
     protected void Start()
     {
         ownResource = GridManager.instance.GetResources(location);
     }
     public void Receive(Projectile projectile)
     {
-        if (projectile.type == ownResource.needMaterialType)
+        if (ownResource == null||projectile.type == ownResource.needMaterialType)
             currentResourceCount++;
         Destroy(projectile.gameObject);
-        if (currentResourceCount >= ownResource.needMaterialCount)
+        if(ownResource==null)
+        {
+            if(currentResourceCount >= normalShooterTowerMaterialCount)
+            {
+                Complete();
+            }
+        }
+        else if (currentResourceCount >= ownResource.needMaterialCount)
             Complete();
     }
     [ContextMenu("Complete")]
@@ -25,6 +34,6 @@ public class GBuildingBase : GTower,IReceiveable
     public void Complete()
     {
         Destroy(gameObject);
-        GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetTowerPrefab(ownResource.type),location);
+        GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetTowerPrefab(ownResource?ownResource.type:ResourceType.None),location);
     }
 }
