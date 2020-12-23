@@ -45,10 +45,11 @@ public class GridManager : Manager<GridManager>
     }
     #region Floor与Chess的增删改查
     /// <summary>
-    /// 查询location位置上的chess,没有则返回null
+    /// 使用GetTower和GetResources代替
     /// </summary>
     /// <param name="location"></param>
     /// <returns></returns>
+    [Obsolete]
     public GChess GetChess(Vector2Int location)
     {
         return chesses.Find(x => location == x.location);
@@ -56,6 +57,14 @@ public class GridManager : Manager<GridManager>
     public GChess[] GetChesses()
     {
         return chesses.ToArray();
+    }
+    public GTower GetTower(Vector2Int location)
+    {
+        return (GTower)chesses.Find(x => (location == x.location&&(x is GTower)));
+    }
+    public GResource GetResources(Vector2Int location)
+    {
+        return (GResource)chesses.Find(x => (location == x.location && (x is GResource)));
     }
     public GChess[] GetChessesInRange(Vector2Int[] range)
     {

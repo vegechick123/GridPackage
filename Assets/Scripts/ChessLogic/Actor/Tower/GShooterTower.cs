@@ -25,6 +25,7 @@ public class GShooterTower : GTower,IReceiveable
     /// <param name="projectileType"></param>
     protected void Shoot(ProjectileType projectileType)
     {
-
+        GameObject origin=PrefabManager.instance.GetProjectilePrefab(projectileType);
+        GameObject result = Instantiate(origin);
     }
 }
