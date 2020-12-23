@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3433215444285994344}
   - component: {fileID: 918842208144509488}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: RawMaterial
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,4 +106,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f42f36d13798344419cf92606018b5dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 0
+  type: 2

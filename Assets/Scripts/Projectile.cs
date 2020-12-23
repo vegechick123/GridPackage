@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -15,10 +16,65 @@ public class Projectile : MonoBehaviour
 {
     public ProjectileType type;
     public IReceiveable target;
-    protected virtual void Shoot(IReceiveable target)
-    {
 
+    /*-----------------炮击相关参数-------------------*/
+    public const float g = 9.8f;
+
+    public GameObject Target;
+    public float speed = 10;
+    private float verticalSpeed;
+    private Vector3 moveDirection;
+
+    private float angleSpeed;
+    private float angle;
+    /*-------------------------------------------------*/
+    /*---------------------------------炮击的核心-----------------------------------*/
+    void Start()
+    {
+        float tmepDistance = Vector3.Distance(transform.position, Target.transform.position);
+        float tempTime = tmepDistance / speed;
+        float riseTime, downTime;
+        riseTime = downTime = tempTime / 2;
+        verticalSpeed = g * riseTime;
+        transform.LookAt(Target.transform.position);
+
+        float tempTan = verticalSpeed / speed;
+        double hu = Math.Atan(tempTan);
+        angle = (float)(180 / Math.PI * hu);
+        transform.eulerAngles = new Vector3(-angle, transform.eulerAngles.y, transform.eulerAngles.z);
+        angleSpeed = angle / riseTime;
+
+        moveDirection = Target.transform.position - transform.position;
     }
+    private float time;
+    IEnumerator AtkUpdate()
+    {
+        while (true)
+        {
+            if (transform.position.y < Target.transform.position.y)
+            {
+                //finish
+                //Destroy(this.gameObject);//todo
+                yield break;
+            }
+            time += Time.deltaTime;
+            float test = verticalSpeed - g * time;
+            transform.Translate(moveDirection.normalized * speed * Time.deltaTime, Space.World);
+            transform.Translate(Vector3.up * test * Time.deltaTime, Space.World);
+            float testAngle = -angle + angleSpeed * time;
+            transform.eulerAngles = new Vector3(testAngle, transform.eulerAngles.y, transform.eulerAngles.z);
+            yield return null;
+        }
+    }
+    public virtual void Shoot(GameObject target)
+    {
+        Target = target;
+        StartCoroutine(AtkUpdate());
+    }
+
+    /*----------------------------------------------------------------------*/
+
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Ground")
@@ -55,4 +111,7 @@ public class Projectile : MonoBehaviour
             default:return type;
         }
     }
+
+
+
 }

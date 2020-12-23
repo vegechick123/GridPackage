@@ -2,8 +2,16 @@
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum ChessType:byte
+{
+    ememy,
+    shooterTower,
+    build,
+    player
+}
 public class GChess : GActor
 {
+    public ChessType chessType;
 
     public UnityEvent eLocationChange = new UnityEvent();
     [HideInInspector]
