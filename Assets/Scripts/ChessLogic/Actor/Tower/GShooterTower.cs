@@ -1,15 +1,27 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 /// <summary>
 /// 发射塔
 /// </summary>
 public class GShooterTower : GTower,IReceiveable
 {
-     //发射塔的设计方向
+    //发射塔的射击方向
     public Vector2Int direction;
     //所占有的资源
-    public ResourceType ownResourse;
+    public ResourceType ownResourse { get; protected set; }
+
+    /*-------------自动采集发射相关-------------*/
+    //采集间隔时间
+    [SerializeField]
+    private float gatherDeltaTime=3f;
+    //采集完成的事件
+    [HideInInspector]
+    public UnityEvent onGatherComplete;
+    
+    private float currentTime = 0f;
+    /*-----------------------------------------*/
     /// <summary>
     /// 朝着对应方向发射反应后的炮弹后销毁原炮弹
     /// </summary>
@@ -28,4 +40,21 @@ public class GShooterTower : GTower,IReceiveable
         GameObject origin=PrefabManager.instance.GetProjectilePrefab(projectileType);
         GameObject result = Instantiate(origin);
     }
+    protected override void Awake()
+    {
+        base.Awake();
+        ownResourse = GridManager.instance.GetResources(location).type;
+        if(ownResourse==ResourceType.RawMaterial)
+            onGatherComplete.AddListener(()=>Shoot(ProjectileType.RawMaterial));
+    }
+    void Update()
+    {
+        currentTime += Time.deltaTime;
+        if(currentTime>gatherDeltaTime)
+        {
+            currentTime -= gatherDeltaTime;
+            onGatherComplete.Invoke();
+        }
+    }
+    
 }

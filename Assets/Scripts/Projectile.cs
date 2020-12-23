@@ -2,9 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// 包括玩家能举起的物品以及发射塔能发射的物品
+/// </summary>
 public enum ProjectileType
 {
     RawMaterial,//原材料
+    BuildingMaterial,//建筑材料
     NormalBullet//普通炮弹
 }
 public class Projectile : MonoBehaviour

@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     {
         return Vector2Int.zero;
     }
-    void Build(GTower prefab)
+    void Build(Vector2Int location)
     {
 
     }

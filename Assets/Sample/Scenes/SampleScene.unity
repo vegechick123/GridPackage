@@ -2699,6 +2699,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b223362e50af4b448f527cc35f972e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  projectilePrefab:
+  - type: 0
+    prefab: {fileID: 0}
+  - type: 1
+    prefab: {fileID: 0}
+  towerPrefab:
+  - type: 0
+    prefab: {fileID: 0}
+  - type: 1
+    prefab: {fileID: 0}
+  - type: 2
+    prefab: {fileID: 0}
+  - type: 3
+    prefab: {fileID: 0}
+  - type: 4
+    prefab: {fileID: 0}
 --- !u!1001 &847645157
 PrefabInstance:
   m_ObjectHideFlags: 0
