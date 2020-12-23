@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     }
     void Build(Vector2Int location)
     {
-
+        if(!GridManager.instance.GetTower(location))
+        {
+            GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetBuildingBasePrefab(), location);
+        }
     }
 }

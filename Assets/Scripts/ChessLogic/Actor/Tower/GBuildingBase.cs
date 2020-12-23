@@ -20,6 +20,7 @@ public class GBuildingBase : GTower,IReceiveable
         if (currentResourceCount >= ownResource.needMaterialCount)
             Complete();
     }
+    [ContextMenu("Complete")]
     //所有资源收集完成，转换成对应的建筑
     public void Complete()
     {

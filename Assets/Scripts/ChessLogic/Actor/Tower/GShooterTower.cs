@@ -8,7 +8,7 @@ using UnityEngine.Events;
 public class GShooterTower : GTower,IReceiveable
 {
     //发射塔的射击方向
-    public Vector2Int direction;
+    public Direction direction;
     //所占有的资源
     public ResourceType ownResourse { get; protected set; }
 
@@ -18,8 +18,7 @@ public class GShooterTower : GTower,IReceiveable
     private float gatherDeltaTime=3f;
     //采集完成的事件
     [HideInInspector]
-    public UnityEvent onGatherComplete;
-    
+    public UnityEvent onGatherComplete;    
     private float currentTime = 0f;
     /*-----------------------------------------*/
     /// <summary>
@@ -37,24 +36,32 @@ public class GShooterTower : GTower,IReceiveable
     /// <param name="projectileType"></param>
     protected void Shoot(ProjectileType projectileType)
     {
+        Debug.Log(gameObject+":Shoot");
         GameObject origin=PrefabManager.instance.GetProjectilePrefab(projectileType);
         GameObject result = Instantiate(origin);
     }
     protected override void Awake()
     {
         base.Awake();
-        ownResourse = GridManager.instance.GetResources(location).type;
+        ownResourse = GridManager.instance.GetResourcesType(location);
         if(ownResourse==ResourceType.RawMaterial)
             onGatherComplete.AddListener(()=>Shoot(ProjectileType.RawMaterial));
     }
     void Update()
     {
+
         currentTime += Time.deltaTime;
         if(currentTime>gatherDeltaTime)
         {
-            currentTime -= gatherDeltaTime;
+            currentTime = gatherDeltaTime;
             onGatherComplete.Invoke();
         }
     }
-    
+    public override void OnValidate()
+    {
+        base.OnValidate();
+        if(GridManager.instance)
+            FaceToward(direction.ToVector2());
+    }
+
 }

@@ -24,7 +24,7 @@ public abstract class GActor : MonoBehaviour
 
         }
     }
-    public void OnValidate()
+    public virtual void OnValidate()
     {
         if (GridManager.instance != null)
         {

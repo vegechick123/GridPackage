@@ -4,7 +4,7 @@ using UnityEngine.Events;
 
 public class GChess : GActor
 {
-
+    [HideInInspector]
     public UnityEvent eLocationChange = new UnityEvent();
     [HideInInspector]
     public CNavComponent navComponent;

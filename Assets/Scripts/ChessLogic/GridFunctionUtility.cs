@@ -9,6 +9,10 @@ using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum Direction
+{
+    up, down, left, right
+}
 static class GridFunctionUtility
 {/// <summary>
 /// 判断location是否在range范围内
@@ -155,6 +159,51 @@ static class GridFunctionUtility
                 return Vector3.zero;
         }
     }
-
+    public static Vector2Int ToVector2(this Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.up:
+                return Vector2Int.up;
+            case Direction.down:
+                return Vector2Int.down;
+            case Direction.left:
+                return Vector2Int.left;
+            case Direction.right:
+                return Vector2Int.right;
+            default:
+                throw new Exception("Error Direction");
+        }
+    }
+    public static Direction ToDirection(this Vector2Int direction)
+    {
+        if (direction.x == 0)
+        {
+            if (direction.y == -1)
+            {
+                return Direction.down;
+            }
+            else if (direction.y == 1)
+            {
+                return Direction.up;
+            }
+            else
+                throw new Exception("Error VectorInt");
+        }
+        else if (direction.y == 0)
+        {
+            if (direction.x == -1)
+            {
+                return Direction.left;
+            }
+            else if (direction.x == 1)
+            {
+                return Direction.right;
+            }
+            else
+                throw new Exception("Error VectorInt");
+        }
+        else
+            throw new Exception("Error VectorInt");
+    }
 }
-

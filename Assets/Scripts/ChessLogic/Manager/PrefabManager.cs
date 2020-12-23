@@ -28,6 +28,9 @@ public class PrefabManager : Manager<PrefabManager>
 
     [SerializeField]
     private ResourcesInfo[] towerPrefab;
+
+    [SerializeField]
+    private GameObject buildingBasePrefab;
     /// <summary>
     /// 获得对应ProjectileType的prefab
     /// </summary>
@@ -46,6 +49,11 @@ public class PrefabManager : Manager<PrefabManager>
     {
         return towerPrefab[(int)type].prefab;
     }
+    public GameObject GetBuildingBasePrefab()
+    {
+        return buildingBasePrefab;
+    }
+
     /// <summary>
     /// 确保编辑器面板的预制体数量正确
     /// </summary>

@@ -66,6 +66,12 @@ public class GridManager : Manager<GridManager>
     {
         return (GResource)chesses.Find(x => (location == x.location && (x is GResource)));
     }
+    public ResourceType GetResourcesType(Vector2Int location)
+    {
+        GResource result = (GResource)chesses.Find(x => (location == x.location && (x is GResource)));
+        if (result) return result.type;
+        else return ResourceType.None;
+    }
     public GChess[] GetChessesInRange(Vector2Int[] range)
     {
         return chesses.FindAll(x=>range.Contains(x.location)).ToArray();

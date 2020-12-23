@@ -25,6 +25,6 @@ public class GResource : GChess
     public ProjectileType projectile { get; protected set; }
 
     //建筑相关，在这个资源上建造建筑需要的资源类型及其花费//
-    public int needMaterialCount;
+    public int needMaterialCount=5;
     public ProjectileType needMaterialType;
 }
