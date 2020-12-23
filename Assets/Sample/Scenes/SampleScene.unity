@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 1
+  m_UseShadowmask: 0
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -2704,6 +2704,8 @@ MonoBehaviour:
     prefab: {fileID: 0}
   - type: 1
     prefab: {fileID: 0}
+  - type: 2
+    prefab: {fileID: 0}
   towerPrefab:
   - type: 0
     prefab: {fileID: 0}
@@ -2715,6 +2717,11 @@ MonoBehaviour:
     prefab: {fileID: 0}
   - type: 4
     prefab: {fileID: 0}
+  - type: 5
+    prefab: {fileID: 0}
+  - type: 6
+    prefab: {fileID: 0}
+  buildingBasePrefab: {fileID: 0}
 --- !u!1001 &847645157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4631,6 +4638,85 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1386076010}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1387311522
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.000000081460335
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -5733981035308023022, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1ca01dc80994f8842851cd957363ae67, type: 2}
+    - target: {fileID: 919132149155446097, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_Name
+      value: Robot
+      objectReference: {fileID: 0}
+    - target: {fileID: 2413864688904672789, guid: 83cda68f12caeef4698a675754044814,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1ca01dc80994f8842851cd957363ae67, type: 2}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 83cda68f12caeef4698a675754044814, type: 3}
 --- !u!1001 &1389242731
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5257,7 +5343,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 28087270de3f2cf4da65074a788ea6f9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  localtion: {x: 0, y: 0}
+  location: {x: 0, y: 0}
+  render: {fileID: 0}
+  chessType: 0
+  eLocationChange:
+    m_PersistentCalls:
+      m_Calls: []
+  navComponent: {fileID: 0}
+  moveComponent: {fileID: 0}
   speed: 0
   health: 0
   destination: {x: 0, y: 0}

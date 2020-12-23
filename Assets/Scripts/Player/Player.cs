@@ -42,18 +42,25 @@ public class Player : GChess
     {
         if(Input.GetKeyDown(playerInput.KeyPickUp))
         {
-
+            GResource target = GridManager.instance.GetResources(location);
+            if (target != null)
+                PickUp(target.projectile);
         }
         else if(Input.GetKeyDown(playerInput.KeyPutDown))
         {
-
+            if(conveyObject)
+                Putdown();
         }
     }
     void PickUp(ProjectileType projectileType)
     {
         if (conveyObject)
             Destroy(conveyObject);
-        conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType),new Vector3(0,0.5f,0),Quaternion.identity,transform).GetComponent<Projectile>();
+        conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType),new Vector3(0,10,0),Quaternion.identity,transform).GetComponent<Projectile>();
+        if(conveyObject.GetComponent<Rigidbody>())
+        {
+            Destroy(conveyObject.GetComponent<Rigidbody>());
+        }
     }
     void Putdown()
     {
