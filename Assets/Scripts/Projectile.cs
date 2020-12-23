@@ -35,7 +35,7 @@ public class Projectile : MonoBehaviour
 
     /*-------------------------------------------------*/
     /*---------------------------------炮击的核心-----------------------------------*/
-    void Start()
+    void InitBullet()
     {
         float tmepDistance = Vector3.Distance(transform.position, Target.transform.position);
         float tempTime = tmepDistance / speed;
@@ -79,6 +79,7 @@ public class Projectile : MonoBehaviour
     public virtual void Shoot(GameObject target)
     {
         Target = target;
+        InitBullet();
         StartCoroutine(AtkUpdate());
     }
 

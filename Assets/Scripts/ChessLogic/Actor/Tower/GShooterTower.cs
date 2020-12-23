@@ -45,8 +45,7 @@ public class GShooterTower : GTower, IReceiveable
     protected void Shoot(ProjectileType projectileType, GameObject target)
     {
         currentTime = 0;
-
-        //Debug.Log(gameObject + ":Shoot");
+        Debug.Log(gameObject.name + ":Shoot");
         GameObject origin = PrefabManager.instance.GetProjectilePrefab(projectileType);
         GameObject bullet = Instantiate(origin);
 
@@ -98,6 +97,8 @@ public class GShooterTower : GTower, IReceiveable
         {
             onGatherComplete.Invoke();
         }
+        if (GridManager.instance)
+            FaceToward(direction.ToVector2());
     }
     public override void OnValidate()
     {
