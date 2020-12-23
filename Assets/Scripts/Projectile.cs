@@ -58,8 +58,8 @@ public class Projectile : MonoBehaviour
         while (true)
         {
             if ((transform.position.y <= Target.transform.position.y 
-                && (transform.position.x - Target.transform.position.x)< delta
-                 && (transform.position.z - Target.transform.position.z) < delta
+                && Math.Abs(transform.position.x - Target.transform.position.x)< delta
+                 && Math.Abs(transform.position.z - Target.transform.position.z) < delta
                 )|| transform.position.y < 0
                 )
             {
