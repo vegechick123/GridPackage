@@ -22,11 +22,17 @@ public class Projectile : MonoBehaviour
 
     public GameObject Target;
     public float speed = 10;
+    /// <summary>
+    /// 攻击到达时的距离误差
+    /// </summary>
+    public float delta = 0.5f;
+
     private float verticalSpeed;
     private Vector3 moveDirection;
 
     private float angleSpeed;
     private float angle;
+
     /*-------------------------------------------------*/
     /*---------------------------------炮击的核心-----------------------------------*/
     void Start()
@@ -51,10 +57,14 @@ public class Projectile : MonoBehaviour
     {
         while (true)
         {
-            if (transform.position.y < Target.transform.position.y)
+            if ((transform.position.y <= Target.transform.position.y 
+                && (transform.position.x - Target.transform.position.x)< delta
+                 && (transform.position.z - Target.transform.position.z) < delta
+                )|| transform.position.y < 0
+                )
             {
                 //finish
-                //Destroy(this.gameObject);//todo
+                Destroy(this.gameObject);//todo
                 yield break;
             }
             time += Time.deltaTime;

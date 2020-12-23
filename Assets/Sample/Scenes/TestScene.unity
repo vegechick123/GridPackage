@@ -9571,12 +9571,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3012302becd29479090801fce0b9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyPickUp: 122
-  KeyPutDown: 120
-  KeyC: 0
-  KeyD: 0
-  KeyE: 0
-  KeyF: 0
+  KeyA: 
+  KeyB: 
+  KeyC: 
+  KeyD: 
+  KeyE: 
+  KeyF: 
   Dup: 0
   Dright: 0
   Dis: 0
@@ -10130,8 +10130,8 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6885226346175195052, guid: 386c4deaeb6cb9c45a12205e8dd98803,
         type: 3}
-      propertyPath: direction
-      value: 0
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6885226346175195052, guid: 386c4deaeb6cb9c45a12205e8dd98803,
         type: 3}

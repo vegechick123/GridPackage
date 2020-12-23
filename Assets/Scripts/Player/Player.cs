@@ -26,12 +26,16 @@ public class Player : GChess
     {
         if (playerInput.Dis > 0.02f)
         {
+            //旋转
             Vector3 targetForward = Vector3.Slerp(this.transform.forward,
                 playerInput.Dright * Direction.right + playerInput.Dup * Direction.forward, 0.2f);
             this.transform.forward = targetForward;
-
+            //位移
             velocity = this.transform.forward * runSpeed;
             this.transform.localPosition += velocity * Time.deltaTime;
+
+            //location更新
+            location = GridManager.instance.Vector3ToVector2Int(this.transform.position); 
         }
     }
     private void Update()

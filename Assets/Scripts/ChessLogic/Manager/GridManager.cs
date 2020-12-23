@@ -74,7 +74,7 @@ public class GridManager : Manager<GridManager>
     }
     public GChess[] GetChessesInRange(Vector2Int[] range)
     {
-        return chesses.FindAll(x=>range.Contains(x.location)).ToArray();
+        return chesses.FindAll(  x=>range.Contains(x.location)  ).ToArray();
     }
     public void AddChess(GChess chess)
     {
@@ -316,6 +316,16 @@ public class GridManager : Manager<GridManager>
                 res.Enqueue(nowpos);
         }
         return res.ToArray();
+    }
+    /// <summary>
+    /// 给定3D坐标转换为2D整数坐标
+    /// </summary>
+    /// <param name="currentPos"></param>
+    /// <returns></returns>
+    public Vector2Int Vector3ToVector2Int(Vector3 currentPos)
+    {
+        Vector3Int cellPosition = grid.WorldToCell(currentPos);
+        return new Vector2Int( cellPosition.x,cellPosition.y);
     }
     /// <summary>
     /// 获得周围敌人可以走动的范围
