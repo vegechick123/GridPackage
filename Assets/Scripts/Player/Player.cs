@@ -24,7 +24,7 @@ public class Player : GChess
         if (DirTran == null)
             DirTran = Camera.main.transform;
     }
-    private void FixedUpdate()
+    private void Update()
     {
         if (playerInput.Dis > 0.02f)
         {
@@ -51,7 +51,7 @@ public class Player : GChess
 
         }
 
-        if (Input.GetKeyDown(playerInput.KeyA))
+        if (Input.GetKeyDown(playerInput.KeyPickUp))
         {
             Vector2Int select = location + direction.ToVector2();
             Debug.Log( select );
@@ -64,17 +64,6 @@ public class Player : GChess
                     chess.GetComponent<GShooterTower>().direction = direction;
                 }
             }
-        }
-    }
-    private void Update()
-    {
-        if(Input.GetKeyDown(playerInput.KeyPickUp))
-        {
-
-        }
-        else if(Input.GetKeyDown(playerInput.KeyPutDown))
-        {
-
         }
     }
     void PickUp(ProjectileType projectileType)
