@@ -9,6 +9,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 368078308990734690, guid: cbef8da14c4785a408115c8a2ad7afee,
         type: 3}
+      propertyPath: floorType
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 368078308990734690, guid: cbef8da14c4785a408115c8a2ad7afee,
+        type: 3}
       propertyPath: location.x
       value: 2
       objectReference: {fileID: 0}
@@ -90,7 +95,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: d530cd8c296ceb34e84805cda92f265e,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d530cd8c296ceb34e84805cda92f265e,
         type: 3}

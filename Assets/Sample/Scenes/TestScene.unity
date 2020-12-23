@@ -6948,4 +6948,4 @@ MonoBehaviour:
   localtion: {x: 0, y: 0}
   speed: 0
   health: 0
-  destination: {x: 0, y: 0}
+  destination: {x: 4, y: 2}
