@@ -91,6 +91,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 368078308990734690, guid: cbef8da14c4785a408115c8a2ad7afee,
         type: 3}
+      propertyPath: floorType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 368078308990734690, guid: cbef8da14c4785a408115c8a2ad7afee,
+        type: 3}
       propertyPath: location.x
       value: 2
       objectReference: {fileID: 0}
