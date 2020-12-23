@@ -5,12 +5,12 @@ using UnityEngine;
 public class PlayerInput : MonoBehaviour
 {
     #region KeyWord
-    public string KeyA;
-    public string KeyB;
-    public string KeyC;
-    public string KeyD;
-    public string KeyE;
-    public string KeyF;
+    public KeyCode KeyPickUp;
+    public KeyCode KeyPutDown;
+    public KeyCode KeyC;
+    public KeyCode KeyD;
+    public KeyCode KeyE;
+    public KeyCode KeyF;
     #endregion
 
     public float Dup;
@@ -32,6 +32,7 @@ public class PlayerInput : MonoBehaviour
     }
     private float Distance(float x, float y)
     {
+        Input.GetKeyDown(KeyPickUp);
         return Mathf.Sqrt(x * x + y * y);
     }
 }
