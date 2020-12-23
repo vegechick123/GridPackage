@@ -3258,6 +3258,7 @@ MonoBehaviour:
     prefab: {fileID: 0}
   - type: 6
     prefab: {fileID: 0}
+  buildingBasePrefab: {fileID: 0}
 --- !u!1001 &847645157
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9570,12 +9571,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b3012302becd29479090801fce0b9be, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  KeyA: 
-  KeyB: 
-  KeyC: 
-  KeyD: 
-  KeyE: 
-  KeyF: 
+  KeyPickUp: 122
+  KeyPutDown: 120
+  KeyC: 0
+  KeyD: 0
+  KeyE: 0
+  KeyF: 0
   Dup: 0
   Dright: 0
   Dis: 0
@@ -10095,7 +10096,7 @@ PrefabInstance:
     - target: {fileID: 6343185508800098863, guid: 386c4deaeb6cb9c45a12205e8dd98803,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000081460335
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 6343185508800098863, guid: 386c4deaeb6cb9c45a12205e8dd98803,
         type: 3}
@@ -10126,6 +10127,11 @@ PrefabInstance:
         type: 3}
       propertyPath: AtkRange
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6885226346175195052, guid: 386c4deaeb6cb9c45a12205e8dd98803,
+        type: 3}
+      propertyPath: direction
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6885226346175195052, guid: 386c4deaeb6cb9c45a12205e8dd98803,
         type: 3}

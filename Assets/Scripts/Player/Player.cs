@@ -11,6 +11,10 @@ public class Player : GChess
 
     private PlayerInput playerInput;
     private Vector3 velocity;
+
+    private float conveyYOffset=0.5f;
+    private Projectile conveyObject;
+
     protected override void Awake()
     {
         base.Awake();
@@ -30,16 +34,44 @@ public class Player : GChess
             this.transform.localPosition += velocity * Time.deltaTime;
         }
     }
-    void Convey(IPortable target)
+    private void Update()
     {
+        if(Input.GetKeyDown(playerInput.KeyPickUp))
+        {
 
-    }
-    Vector2Int GetCurrentLocation()
-    {
-        return Vector2Int.zero;
-    }
-    void Build(GTower prefab)
-    {
+        }
+        else if(Input.GetKeyDown(playerInput.KeyPutDown))
+        {
 
+        }
+    }
+    void PickUp(ProjectileType projectileType)
+    {
+        if (conveyObject)
+            Destroy(conveyObject);
+        conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType),new Vector3(0,0.5f,0),Quaternion.identity,transform).GetComponent<Projectile>();
+    }
+    void Putdown()
+    {
+        if (!conveyObject)
+            return;
+        GTower tower = GetComponent<GTower>();
+        if(tower!=null)
+        {
+            IReceiveable target = tower as IReceiveable;
+            if(target!=null)
+            target.Receive(conveyObject);
+        }
+        else
+        {
+            if(conveyObject.type==ProjectileType.BuildingMaterial)
+            {
+                Build(location);
+            }
+        }
+    }
+    void Build(Vector2Int targetLocation)
+    {
+        GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetBuildingBasePrefab(),targetLocation);
     }
 }
