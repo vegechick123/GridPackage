@@ -107,7 +107,8 @@ public class GChess : GActor
     
     public void FaceToward(Vector3 dir)
     {
-        transform.rotation = Quaternion.LookRotation(dir.normalized, GridManager.instance.grid.GetUpVector());
+        Quaternion newRota = Quaternion.LookRotation(dir.normalized, GridManager.instance.grid.GetUpVector());
+        this.transform.rotation = Quaternion.Lerp(this.transform.rotation, newRota, 0.2f);
     }
     /// <summary>
     /// 朝向对应方向
