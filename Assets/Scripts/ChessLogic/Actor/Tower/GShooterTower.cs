@@ -44,9 +44,16 @@ public class GShooterTower : GTower, IReceiveable
     /// <param name="projectileType"></param>
     protected void Shoot(ProjectileType projectileType, GameObject target)
     {
+        currentTime = 0;
+
         Debug.Log(gameObject + ":Shoot");
         GameObject origin = PrefabManager.instance.GetProjectilePrefab(projectileType);
-        Projectile pj = Instantiate(origin).GetComponent<Projectile>();
+        GameObject bullet = Instantiate(origin);
+
+        bullet.transform.SetParent(this.transform);
+        bullet.transform.localPosition = new Vector3();
+
+        Projectile pj = bullet.GetComponent<Projectile>();
         pj.Shoot(target);
     }
     /// <summary>
@@ -57,7 +64,7 @@ public class GShooterTower : GTower, IReceiveable
         Debug.Log("EnemySearch");
         Vector2Int[] search = GridManager.instance.GetOneRayRange(location, direction.ToVector2(), AtkRange);
         GChess[] chesses = GridManager.instance.GetChessesInRange(search);//攻击范围的棋子
-                                                                          //检测这些棋子是 什么？
+                                                                          //检测这些棋子是什么？
         foreach (var chess in chesses)
         {
             if (chess.chessType == ChessType.ememy)
@@ -89,9 +96,8 @@ public class GShooterTower : GTower, IReceiveable
         currentTime += Time.deltaTime;
         if (currentTime > gatherDeltaTime)
         {
-            currentTime = 0;
             onGatherComplete.Invoke();
-        }        
+        }
     }
     public override void OnValidate()
     {
