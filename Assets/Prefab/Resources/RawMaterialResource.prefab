@@ -56,7 +56,7 @@ MonoBehaviour:
   canGather: 1
   projectile: 0
   needMaterialCount: 2
-  needMaterialType: 1
+  needMaterialType: 0
 --- !u!1 &4434518854510004777
 GameObject:
   m_ObjectHideFlags: 0

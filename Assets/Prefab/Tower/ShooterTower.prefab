@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7059776890261152656}
   - component: {fileID: 7059776890261152659}
+  - component: {fileID: 9185064738828182600}
   m_Layer: 0
   m_Name: ShooterTower
   m_TagString: Untagged
@@ -46,19 +47,33 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   location: {x: 0, y: 0}
   render: {fileID: 0}
-  chessType: 0
+  chessType: 1
   eLocationChange:
     m_PersistentCalls:
       m_Calls: []
   navComponent: {fileID: 0}
   moveComponent: {fileID: 0}
-  AtkRange: 0
+  AtkRange: 7
   direction: 0
   atkSpeed: 0
   gatherDeltaTime: 3
   onGatherComplete:
     m_PersistentCalls:
       m_Calls: []
+--- !u!136 &9185064738828182600
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7059776890261152657}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.4
+  m_Height: 1.5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.39, z: 0}
 --- !u!1001 &7059776889435095848
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -70,6 +85,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
+        type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
         type: 3}
@@ -89,22 +119,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.7071068
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.000000081460335
-      objectReference: {fileID: 0}
-    - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
-        type: 3}
-      propertyPath: m_LocalRotation.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
         type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
+        type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
         type: 3}
@@ -114,7 +144,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 90
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 13b257807d054b448ad3a2419c5438ad,
         type: 3}

@@ -15,12 +15,12 @@ public enum ProjectileType
 public class Projectile : MonoBehaviour
 {
     public ProjectileType type;
-    public IReceiveable target;
+    public IReceiveable receiveTarget;
 
     /*-----------------炮击相关参数-------------------*/
     public const float g = 9.8f;
 
-    public GameObject Target;
+    public GameObject targetGameObject;
     public float speed = 10;
     /// <summary>
     /// 攻击到达时的距离误差
@@ -37,12 +37,12 @@ public class Projectile : MonoBehaviour
     /*---------------------------------炮击的核心-----------------------------------*/
     void InitBullet()
     {
-        float tmepDistance = Vector3.Distance(transform.position, Target.transform.position);
+        float tmepDistance = Vector3.Distance(transform.position, targetGameObject.transform.position);
         float tempTime = tmepDistance / speed;
         float riseTime, downTime;
         riseTime = downTime = tempTime / 2;
         verticalSpeed = g * riseTime;
-        transform.LookAt(Target.transform.position);
+        transform.LookAt(targetGameObject.transform.position);
 
         float tempTan = verticalSpeed / speed;
         double hu = Math.Atan(tempTan);
@@ -50,16 +50,16 @@ public class Projectile : MonoBehaviour
         transform.eulerAngles = new Vector3(-angle, transform.eulerAngles.y, transform.eulerAngles.z);
         angleSpeed = angle / riseTime;
 
-        moveDirection = Target.transform.position - transform.position;
+        moveDirection = targetGameObject.transform.position - transform.position;
     }
     private float time;
     IEnumerator AtkUpdate()
     {
         while (true)
         {
-            if ((transform.position.y <= Target.transform.position.y 
-                && Math.Abs(transform.position.x - Target.transform.position.x)< delta
-                 && Math.Abs(transform.position.z - Target.transform.position.z) < delta
+            if ((transform.position.y <= targetGameObject.transform.position.y 
+                && Math.Abs(transform.position.x - targetGameObject.transform.position.x)< delta
+                 && Math.Abs(transform.position.z - targetGameObject.transform.position.z) < delta
                 )|| transform.position.y < 0
                 )
             {
@@ -78,7 +78,8 @@ public class Projectile : MonoBehaviour
     }
     public virtual void Shoot(GameObject target)
     {
-        Target = target;
+        targetGameObject = target;
+        receiveTarget = targetGameObject.GetComponent<IReceiveable>();
         InitBullet();
         StartCoroutine(AtkUpdate());
     }
@@ -90,9 +91,8 @@ public class Projectile : MonoBehaviour
     public virtual void Shoot(GameObject target,float speed)
     {
         this.speed = speed;
-        Target = target;
-        InitBullet();
-        StartCoroutine(AtkUpdate());
+        Shoot(target);
+        
     }
     /*----------------------------------------------------------------------*/
 
@@ -101,9 +101,9 @@ public class Projectile : MonoBehaviour
     {
         if (other.tag == "Ground")
         {
-            if (target != null)
+            if (receiveTarget != null)
             {
-                target.Receive(this);
+                receiveTarget.Receive(this);
             }
         }
     }

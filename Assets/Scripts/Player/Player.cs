@@ -100,13 +100,13 @@ public class Player : GChess
         {
             IReceiveable target = tower as IReceiveable;
             if(target!=null)
-            target.Receive(conveyObject);
+                target.Receive(conveyObject);
         }
         else
         {
-            if(conveyObject.type==ProjectileType.BuildingMaterial)
+            if(conveyObject.type==ProjectileType.RawMaterial)
             {
-                Build(location);
+                Build(GetSelectLocation());
                 Destroy(conveyObject.gameObject);
             }
         }
