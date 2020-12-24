@@ -17,13 +17,22 @@ public class Player : GChess
     private float conveyYOffset=0.5f;
     private Projectile conveyObject;
 
+    public Transform lockTran;
+
     protected override void Awake()
     {
         base.Awake();
         playerInput = this.GetComponent<PlayerInput>();
         if (DirTran == null)
             DirTran = Camera.main.transform;
+        if (lockTran == null)
+            lockTran = this.transform.GetChild(0);
+
     }
+    //void FixedUpdate()
+    //{    //取消弹性
+    //    this.GetComponent<Rigidbody>().velocity = new Vector3(0, 0, 0);
+    //}
     private void Update()
     {
         if (playerInput.Dis > 0.02f)
@@ -35,8 +44,9 @@ public class Player : GChess
             this.transform.forward = targetForward;
             //位移
             velocity = this.transform.forward * runSpeed;
-            this.transform.localPosition += velocity * Time.deltaTime;
-
+            this.transform.position += velocity * Time.deltaTime;
+            //postion锁定
+            this.transform.position = this.lockTran.position;
             //location更新
             location = GridManager.instance.Vector3ToVector2Int(this.transform.position);
             //Direction朝向更新
@@ -48,12 +58,14 @@ public class Player : GChess
                 direction = Direction.down;
             else if (this.transform.eulerAngles.y >= 225 && this.transform.eulerAngles.y < 315)
                 direction = Direction.left;
+            
 
         }
 
         if (Input.GetKeyDown(playerInput.KeyPickUp))
         {
-            GResource target=GridManager.instance.GetResources(location);
+            //收集前方一格内的资源
+            GResource target=GridManager.instance.GetResources(location+direction.ToVector2());
             if (target != null && target.canGather)
             {
                 PickUp(target.projectile);
