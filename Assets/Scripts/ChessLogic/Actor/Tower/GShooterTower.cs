@@ -53,6 +53,8 @@ public class GShooterTower : GTower, IReceiveable
             //检测最远的可射击格子
             while (gFloor == null)
             {
+                if (AtkRange - x == 0)
+                    return;
                 farthest = (AtkRange - x) * direction.ToVector2() + location;
                 gFloor = GridManager.instance.GetFloor(farthest);
                 x++;

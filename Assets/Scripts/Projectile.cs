@@ -21,7 +21,19 @@ public class Projectile : MonoBehaviour
     public const float g = 9.8f;
 
     public GameObject targetGameObject;
-    public float speed = 10;
+    [SerializeField]
+    private float speed = 10;
+    public float Speed
+    {
+        get => speed;
+        set
+        {
+            if (value <= 0.1f)
+                speed = 0.1f;
+            else
+                speed = value;
+        }
+    }
     /// <summary>
     /// 攻击到达时的距离误差
     /// </summary>
@@ -38,13 +50,13 @@ public class Projectile : MonoBehaviour
     void InitBullet()
     {
         float tmepDistance = Vector3.Distance(transform.position, targetGameObject.transform.position);
-        float tempTime = tmepDistance / speed;
+        float tempTime = tmepDistance / Speed;
         float riseTime, downTime;
         riseTime = downTime = tempTime / 2;
         verticalSpeed = g * riseTime;
         transform.LookAt(targetGameObject.transform.position);
 
-        float tempTan = verticalSpeed / speed;
+        float tempTan = verticalSpeed / Speed;
         double hu = Math.Atan(tempTan);
         angle = (float)(180 / Math.PI * hu);
         transform.eulerAngles = new Vector3(-angle, transform.eulerAngles.y, transform.eulerAngles.z);
@@ -69,7 +81,7 @@ public class Projectile : MonoBehaviour
             }
             time += Time.deltaTime;
             float test = verticalSpeed - g * time;
-            transform.Translate(moveDirection.normalized * speed * Time.deltaTime, Space.World);
+            transform.Translate(moveDirection.normalized * Speed * Time.deltaTime, Space.World);
             transform.Translate(Vector3.up * test * Time.deltaTime, Space.World);
             float testAngle = -angle + angleSpeed * time;
             transform.eulerAngles = new Vector3(testAngle, transform.eulerAngles.y, transform.eulerAngles.z);
@@ -87,10 +99,10 @@ public class Projectile : MonoBehaviour
     /// 根据射击距离改变射击速度
     /// </summary>
     /// <param name="target"></param>
-    /// <param name="speed"></param>
-    public virtual void Shoot(GameObject target,float speed)
+    /// <param name="Speed"></param>
+    public virtual void Shoot(GameObject target,float Speed)
     {
-        this.speed = speed;
+        this.Speed = Speed;
         Shoot(target);
         
     }
