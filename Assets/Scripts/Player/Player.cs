@@ -16,6 +16,9 @@ public class Player : GChess
 
     private float conveyYOffset=0.5f;
     private Projectile conveyObject;
+    [SerializeField]
+    private GameObject highLightEdgePrefab;
+    private GameObject highLightEdge;
 
     public Transform lockTran;
 
@@ -61,14 +64,24 @@ public class Player : GChess
             
 
         }
-
+        HighLightHandle();
         if (Input.GetKeyDown(playerInput.KeyPickUp))
         {
-            //收集前方一格内的资源
-            GResource target=GridManager.instance.GetResources(location+direction.ToVector2());
-            if (target != null && target.canGather)
+            GResource target=GridManager.instance.GetResources(GetSelectLocation());
+            if (target != null)
             {
-                PickUp(target.projectile);
+                ProjectileType projectile;
+                if (!conveyObject&&target.canGather)
+                {
+                    projectile= target.projectile;
+                    PickUp(projectile);
+                }
+                else if(conveyObject)
+                {
+                    projectile = conveyObject.Reaction(target.type);
+                    PickUp(projectile);
+                }
+                
             }
         }
         if(Input.GetKeyDown(playerInput.KeyPutDown))
@@ -92,10 +105,22 @@ public class Player : GChess
         }
         
     }
+    //处理选中格子的高亮
+    void HighLightHandle()
+    {
+        Vector2Int select = GetSelectLocation();
+        if (!highLightEdge)
+        {
+            highLightEdge = Instantiate(highLightEdgePrefab);
+        }
+        highLightEdge.transform.position = GridManager.instance.GetFloorPosition3D(select);
+    }
     void PickUp(ProjectileType projectileType)
     {
         if (conveyObject)
+        {
             Destroy(conveyObject.gameObject);
+        }
         conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType),transform.position+new Vector3(0,conveyYOffset,0),Quaternion.identity,transform).GetComponent<Projectile>();
     }
     Vector2Int GetSelectLocation()
