@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!114 &-8948819190150375406
+--- !u!114 &-6788421432607226109
 MonoBehaviour:
   m_ObjectHideFlags: 11
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: "Ambient Occlusion Map from Mesh \u6750\u8D28.2"
+  m_Name: "Ambient Occlusion Map from Mesh \u6750\u8D28.1"
   m_Shader: {fileID: -6465566751694194690, guid: fef5d7fa3497d8844800ca758170dec0,
     type: 3}
   m_ShaderKeywords: 
@@ -34,15 +34,15 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - AO:
-        m_Texture: {fileID: 2800000, guid: 41ffc9120cb2040479b0ac9c5bf17637, type: 3}
+        m_Texture: {fileID: 2800000, guid: 55ddae0d82621b048b6af8eadf424dc2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - BaseColor:
-        m_Texture: {fileID: 0}
+        m_Texture: {fileID: 2800000, guid: bc41fe4cfd19cc142a33b21718c88563, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BaseMap:
-        m_Texture: {fileID: 2800000, guid: 41ffc9120cb2040479b0ac9c5bf17637, type: 3}
+        m_Texture: {fileID: 2800000, guid: 55ddae0d82621b048b6af8eadf424dc2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _BumpMap:
@@ -54,7 +54,7 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 41ffc9120cb2040479b0ac9c5bf17637, type: 3}
+        m_Texture: {fileID: 2800000, guid: 55ddae0d82621b048b6af8eadf424dc2, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -70,7 +70,8 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - AOStrength: 0.05
+    - AOStrength: 0.1
+    - Boolean_A74C75A9: 1
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -94,7 +95,7 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - Color_340FD7A5: {r: 0.98823535, g: 0.8078432, b: 0.45882356, a: 0}
+    - Color_340FD7A5: {r: 0.98823535, g: 0.8078432, b: 0.46274513, a: 0}
     - _BaseColor: {r: 0.9960785, g: 0.83921576, b: 0.4666667, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
