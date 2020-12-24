@@ -59,6 +59,8 @@ MonoBehaviour:
   runSpeed: 3
   DirTran: {fileID: 0}
   direction: 0
+  highLightEdgePrefab: {fileID: 3206349444997879654, guid: 40938be75af41774cbdf97f8271a96be,
+    type: 3}
 --- !u!114 &1340047154115766455
 MonoBehaviour:
   m_ObjectHideFlags: 0
