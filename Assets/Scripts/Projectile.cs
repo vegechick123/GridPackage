@@ -82,7 +82,18 @@ public class Projectile : MonoBehaviour
         InitBullet();
         StartCoroutine(AtkUpdate());
     }
-
+    /// <summary>
+    /// 根据射击距离改变射击速度
+    /// </summary>
+    /// <param name="target"></param>
+    /// <param name="speed"></param>
+    public virtual void Shoot(GameObject target,float speed)
+    {
+        this.speed = speed;
+        Target = target;
+        InitBullet();
+        StartCoroutine(AtkUpdate());
+    }
     /*----------------------------------------------------------------------*/
 
 

@@ -47,19 +47,30 @@ public class GShooterTower : GTower, IReceiveable
         //没有敌人时自动攻击最远地方
         if (target == null)
         {
-            Vector2Int farthest = AtkRange * direction.ToVector2() + location;
-            target = GridManager.instance.GetFloor(farthest).gameObject;
+            Vector2Int farthest;
+            GFloor gFloor = null;
+            int x = 0;
+            //检测最远的可射击格子
+            while (gFloor == null)
+            {
+                farthest = (AtkRange - x) * direction.ToVector2() + location;
+                gFloor = GridManager.instance.GetFloor(farthest);
+                x++;
+            }
+            target = gFloor.gameObject;
+            //射击速度设置
+            atkSpeed = AtkRange - x + 2;
         }
         currentTime = 0;
         Debug.Log(gameObject.name + ":Shoot");
         GameObject origin = PrefabManager.instance.GetProjectilePrefab(projectileType);
         GameObject bullet = Instantiate(origin);
-
-        bullet.transform.SetParent(this.transform);
-        bullet.transform.localPosition = new Vector3();
+        //射击起点设置
+        bullet.transform.position = this.transform.position + new Vector3(0,1,0);
 
         Projectile pj = bullet.GetComponent<Projectile>();
-        pj.Shoot(target);
+        //射击更自然，射速跟射击距离有关
+        pj.Shoot( target , atkSpeed );
     }
     /// <summary>
     /// 敌人搜索
