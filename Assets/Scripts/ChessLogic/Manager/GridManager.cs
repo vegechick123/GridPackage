@@ -300,20 +300,14 @@ public class GridManager : Manager<GridManager>
     public Vector2Int[] GetOneRayRange(Vector2Int origin, Vector2Int dir, int maxLength, int beginDistance = 1)
     {
         Queue<Vector2Int> res = new Queue<Vector2Int>();
-        for (int d = 1; d<=maxLength; d++)
+        for (int d = beginDistance; d<=maxLength; d++)
         {
             Vector2Int nowpos = d * dir + origin;
             GChess t = GetChess(nowpos);
-            if (!InRange(nowpos) ||t!=null)
+            if (InRange(nowpos) && t!=null)
             {
-                if(t!=null&&d>=beginDistance)
-                {
-                    res.Enqueue(nowpos);
-                }
-                break;
-            }
-            else
                 res.Enqueue(nowpos);
+            }
         }
         return res.ToArray();
     }

@@ -44,9 +44,12 @@ public class GShooterTower : GTower, IReceiveable
     /// <param name="projectileType"></param>
     protected void Shoot(ProjectileType projectileType, GameObject target)
     {
-        //TODO:增加没有搜素到敌人时的行为
+        //没有敌人时自动攻击最远地方
         if (target == null)
-            return;
+        {
+            Vector2Int farthest = AtkRange * direction.ToVector2() + location;
+            target = GridManager.instance.GetFloor(farthest).gameObject;
+        }
         currentTime = 0;
         Debug.Log(gameObject.name + ":Shoot");
         GameObject origin = PrefabManager.instance.GetProjectilePrefab(projectileType);
@@ -100,6 +103,7 @@ public class GShooterTower : GTower, IReceiveable
         if (currentTime > gatherDeltaTime)
         {
             onGatherComplete.Invoke();
+            
         }
         if (GridManager.instance)
             FaceToward(direction.ToVector2());
