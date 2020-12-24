@@ -37,6 +37,6 @@ MonoBehaviour:
   m_CanChangeZPosition: 0
   m_Anchor: {x: 0.5, y: 0.5, z: 0}
   m_Prefabs:
-  - {fileID: 1578742917750663319, guid: cbef8da14c4785a408115c8a2ad7afee, type: 3}
+  - {fileID: 2628846301055947445, guid: 5e4d9ad2b0bc4f641b603271c4121928, type: 3}
   m_PerlinScale: 0.5
   probability: []
