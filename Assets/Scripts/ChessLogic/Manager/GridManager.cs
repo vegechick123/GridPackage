@@ -100,6 +100,8 @@ public class GridManager : Manager<GridManager>
     }
     public void AddFloor(GFloor floor)
     {
+        if (!InRange(floor.location))
+            return;
         if (floors[floor.location.x, floor.location.y] != null)
         {
             Debug.LogError("同一位置多个Floor");

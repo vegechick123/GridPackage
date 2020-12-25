@@ -38,6 +38,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Floats:
     - AOStrength: 0.1
+    - Boolean_A74C75A9: 0
     - _AlphaClip: 0
     - _Blend: 0
     - _Cull: 2
