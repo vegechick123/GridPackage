@@ -8,12 +8,15 @@ public class GBuildingBase : GTower, IReceiveable
     protected GResource ownResource;
     [NonSerialized]
     private int m_currentResourceCount = 1;
+    [SerializeField]
+    private MeshRenderer[] m_renderer;
     public int currentResourceCount
     {
         get { return m_currentResourceCount; }
         set
         {
             m_currentResourceCount = value;
+            RefreshMesh();
             RefreshText();
         }
     }
@@ -39,6 +42,7 @@ public class GBuildingBase : GTower, IReceiveable
     protected void Start()
     {
         ownResource = GridManager.instance.GetResources(location);
+        RefreshMesh();
         RefreshText();
     }
     public void Receive(Projectile projectile)
@@ -50,6 +54,16 @@ public class GBuildingBase : GTower, IReceiveable
         if (currentResourceCount >= needResourceCount)
             Complete();
         RefreshText();
+    }
+    void RefreshMesh()
+    {
+        for (int i = 0; i < m_renderer.Length; i++)
+        {
+            if (m_renderer[i] != null) ;
+            {
+                m_renderer[i].enabled = currentResourceCount >= i;
+            }
+        }
     }
     void RefreshText()
     {
