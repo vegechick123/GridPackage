@@ -15,7 +15,7 @@ public enum ResourceType
     GreenFruit,
     BlueFruit
 }
-public class GResource : GChess
+public class GResource : GChess, IPickUpAble
 {
     //资源类型
     [SerializeField]
@@ -29,6 +29,21 @@ public class GResource : GChess
     public ProjectileType projectile;
     [Header("建筑相关")]
     //建筑相关，在这个资源上建造建筑需要的资源类型及其花费//
-    public int needMaterialCount=5;
+    public int needMaterialCount = 5;
     public ProjectileType needMaterialType;
+
+    public void BePickUp(Player player)
+    {
+        if (canGather)
+        {
+            player.PickUp(projectile);
+        }
+        else
+        {
+            if (player.conveyObject)
+            {
+                player.PickUp(player.conveyObject.Reaction(type));
+            }
+        }
+    }
 }

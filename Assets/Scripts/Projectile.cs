@@ -114,6 +114,7 @@ public class Projectile : MonoBehaviour
         {
             receiveTarget.Receive(this);
         }
+        Destroy(gameObject);
     }
     private void OnTriggerEnter(Collider other)
     {

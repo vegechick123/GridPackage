@@ -14,8 +14,9 @@ public class Player : GChess
     private PlayerInput playerInput;
     private Vector3 velocity;
 
-    private float conveyYOffset=0.5f;
-    private Projectile conveyObject;
+    private float conveyYOffset = 0.5f;
+    [HideInInspector]
+    public Projectile conveyObject;
     [SerializeField]
     private GameObject highLightEdgePrefab;
     private GameObject highLightEdge;
@@ -38,6 +39,7 @@ public class Player : GChess
     //}
     private void Update()
     {
+
         if (playerInput.Dis > 0.02f)
         {
 
@@ -61,38 +63,35 @@ public class Player : GChess
                 direction = Direction.down;
             else if (this.transform.eulerAngles.y >= 225 && this.transform.eulerAngles.y < 315)
                 direction = Direction.left;
-            
+
 
         }
         HighLightHandle();
         if (Input.GetKeyDown(playerInput.KeyPickUp))
         {
-            GResource target=GridManager.instance.GetResources(GetSelectLocation());
-            if (target != null)
+            GTower targetTower = GridManager.instance.GetTower(GetSelectLocation());
+            if (targetTower != null)
             {
-                ProjectileType projectile;
-                if (!conveyObject&&target.canGather)
+                targetTower.BePickUp(this);
+            }
+            else
+            {
+                GResource targetResource = GridManager.instance.GetResources(GetSelectLocation());
+                if (targetResource != null)
                 {
-                    projectile= target.projectile;
-                    PickUp(projectile);
+                    targetResource.BePickUp(this);
                 }
-                else if(conveyObject)
-                {
-                    projectile = conveyObject.Reaction(target.type);
-                    PickUp(projectile);
-                }
-                
             }
         }
-        if(Input.GetKeyDown(playerInput.KeyPutDown))
+        if (Input.GetKeyDown(playerInput.KeyPutDown))
         {
-            if (conveyObject!=null)
+            if (conveyObject != null)
                 Putdown();
         }
         if (Input.GetKeyDown(playerInput.KeyRotation))
         {
             Vector2Int select = GetSelectLocation();
-            Debug.Log( select );
+            Debug.Log(select);
             GChess chess = GridManager.instance.GetTower(select);
             if (chess)
             {
@@ -103,7 +102,6 @@ public class Player : GChess
                 }
             }
         }
-        
     }
     //处理选中格子的高亮
     void HighLightHandle()
@@ -115,13 +113,13 @@ public class Player : GChess
         }
         highLightEdge.transform.position = GridManager.instance.GetFloorPosition3D(select);
     }
-    void PickUp(ProjectileType projectileType)
+    public void PickUp(ProjectileType projectileType)
     {
         if (conveyObject)
         {
             Destroy(conveyObject.gameObject);
         }
-        conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType),transform.position+new Vector3(0,conveyYOffset,0),Quaternion.identity,transform).GetComponent<Projectile>();
+        conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType), transform.position + new Vector3(0, conveyYOffset, 0), Quaternion.identity, transform).GetComponent<Projectile>();
     }
     Vector2Int GetSelectLocation()
     {
@@ -133,15 +131,15 @@ public class Player : GChess
         if (!conveyObject)
             return;
         GTower tower = GridManager.instance.GetTower(GetSelectLocation());
-        if(tower!=null)
+        if (tower != null)
         {
             IReceiveable target = tower as IReceiveable;
-            if(target!=null)
+            if (target != null)
                 target.Receive(conveyObject);
         }
         else
         {
-            if(conveyObject.type==ProjectileType.RawMaterial)
+            if (conveyObject.type == ProjectileType.RawMaterial)
             {
                 Build(GetSelectLocation());
                 Destroy(conveyObject.gameObject);
@@ -150,6 +148,6 @@ public class Player : GChess
     }
     void Build(Vector2Int targetLocation)
     {
-        GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetBuildingBasePrefab(),targetLocation);
+        GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetBuildingBasePrefab(), targetLocation);
     }
 }
