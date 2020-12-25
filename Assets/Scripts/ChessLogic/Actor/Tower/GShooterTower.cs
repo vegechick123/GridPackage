@@ -54,7 +54,7 @@ public class GShooterTower : GTower, IReceiveable
             while (gFloor == null)
             {
                 if (AtkRange - x == 0)
-                    return;
+                    break;
                 farthest = (AtkRange - x) * direction.ToVector2() + location;
                 gFloor = GridManager.instance.GetFloor(farthest);
                 x++;

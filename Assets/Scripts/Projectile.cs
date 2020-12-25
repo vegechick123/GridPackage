@@ -28,8 +28,8 @@ public class Projectile : MonoBehaviour
         get => speed;
         set
         {
-            if (value <= 0.1f)
-                speed = 0.1f;
+            if (value <= 2f)
+                speed = 2f;
             else
                 speed = value;
         }
