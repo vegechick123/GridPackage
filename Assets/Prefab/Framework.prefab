@@ -234,7 +234,7 @@ MonoBehaviour:
   size: {x: 100, y: 100}
   grid: {fileID: 3956520011382755892}
   chessContainer: {fileID: 3956520010877979979}
-  chessOffset: 0
+  chessOffset: 0.5
   floorOffset: -0.5
 --- !u!114 &3956520010573083713
 MonoBehaviour:
@@ -250,27 +250,48 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectilePrefab:
   - type: 0
-    prefab: {fileID: 0}
+    prefab: {fileID: 2317878678711258325, guid: 4424c61be3f55e547b0af3e4a570e56f,
+      type: 3}
   - type: 1
-    prefab: {fileID: 0}
+    prefab: {fileID: 2317878678711258325, guid: 7b916d163738eab4d9ced7bb41ee7e16,
+      type: 3}
   - type: 2
-    prefab: {fileID: 0}
+    prefab: {fileID: 2317878678711258325, guid: cc2feb9821a67ac40b24438dec86ca22,
+      type: 3}
   towerPrefab:
   - type: 0
-    prefab: {fileID: 0}
+    prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
+      type: 3}
   - type: 1
-    prefab: {fileID: 0}
+    prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
+      type: 3}
   - type: 2
-    prefab: {fileID: 0}
+    prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
+      type: 3}
   - type: 3
-    prefab: {fileID: 0}
+    prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
+      type: 3}
   - type: 4
-    prefab: {fileID: 0}
+    prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
+      type: 3}
   - type: 5
-    prefab: {fileID: 0}
+    prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
+      type: 3}
   - type: 6
+    prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
+      type: 3}
+  enemyInfo:
+  - id: 1
+    prefab: {fileID: 8194152327748865473, guid: 5356a0d5bcd3cae41b6359b0a8d46723,
+      type: 3}
+  - id: 2
     prefab: {fileID: 0}
-  buildingBasePrefab: {fileID: 0}
+  - id: 3
+    prefab: {fileID: 0}
+  buildingBasePrefab: {fileID: 5517856087662725843, guid: 8a4ad232db8e064409dd62dddc0ff1dc,
+    type: 3}
+  paintingQuadPrefab: {fileID: 2624470423566881048, guid: 78cf2d3aba951ea4bb87934b98ee7f78,
+    type: 3}
 --- !u!1 &3956520010708617350
 GameObject:
   m_ObjectHideFlags: 0
@@ -298,7 +319,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3956520010708617350}
   m_LocalRotation: {x: 0.32834, y: 0.31302294, z: -0.11636913, w: 0.8835541}
-  m_LocalPosition: {x: 2.2299998, y: 5.904012, z: -4.88}
+  m_LocalPosition: {x: 2.04, y: 5.904012, z: -1.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 3956520009966092068}
