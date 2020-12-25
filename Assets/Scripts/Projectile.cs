@@ -10,7 +10,9 @@ public enum ProjectileType
 {
     RawMaterial,//原材料
     BuildingMaterial,//建筑材料
-    NormalBullet//普通炮弹
+    NormalBullet,//普通炮弹
+    BlueBullet,
+    RedBullet
 }
 public class Projectile : MonoBehaviour
 {
@@ -84,7 +86,10 @@ public class Projectile : MonoBehaviour
                     HitTarget();
                 }
                 else
+                {
+                    PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), Color.white);
                     Destroy(this.gameObject);
+                }
                 yield break;
             }
 
@@ -106,6 +111,8 @@ public class Projectile : MonoBehaviour
         receiveTarget = targetGameObject.GetComponent<IReceiveable>();
         InitBullet();
         StartCoroutine(AtkUpdate());
+        //
+        Instantiate(PrefabManager.instance.shootingParticle, transform.position, PrefabManager.instance.shootingParticle.transform.rotation);
     }
     /// <summary>
     /// 根据射击距离改变射击速度
@@ -121,7 +128,7 @@ public class Projectile : MonoBehaviour
     /*----------------------------------------------------------------------*/
 
     void HitTarget()
-    {
+    {        
         if (receiveTarget != null && this!=null)
         {
             receiveTarget.Receive(this);

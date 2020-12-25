@@ -153,6 +153,7 @@ public class Enemy : GChess,IReceiveable
         //    case ProjectileType.RawMaterial: CurrentHealth -= 2; this.transform.Find("Blood").gameObject.SetActive(true); break;
         //}
         CurrentHealth -= projectile.damage; this.transform.Find("Blood").gameObject.SetActive(true);
+        PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), Color.white);
     }
 
 }

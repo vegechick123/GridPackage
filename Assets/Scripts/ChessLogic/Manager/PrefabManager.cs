@@ -41,8 +41,12 @@ public class PrefabManager : Manager<PrefabManager>
 
     [SerializeField]
     private GameObject buildingBasePrefab;
+    [Header("VFX")]
     [SerializeField]
     public GameObject paintingQuadPrefab;//{ get; private set; }
+    [Header("Particle")]
+    public GameObject paintingParticle;
+    public GameObject shootingParticle;
     /// <summary>
     /// 获得对应ProjectileType的prefab
     /// </summary>

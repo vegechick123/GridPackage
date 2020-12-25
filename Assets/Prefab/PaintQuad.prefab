@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 2624470423566881049}
   - component: {fileID: 2624470423566881053}
   m_Layer: 0
-  m_Name: Quad
+  m_Name: PaintQuad
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,13 +27,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2624470423566881048}
-  m_LocalRotation: {x: -0.99450344, y: -0, z: -0, w: -0.104703754}
-  m_LocalPosition: {x: 9.01579, y: -15.681573, z: 13.83078}
+  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: -192.02, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
 --- !u!33 &2624470423566881055
 MeshFilter:
   m_ObjectHideFlags: 0

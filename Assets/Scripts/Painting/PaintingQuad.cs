@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class PaintingQuad : MonoBehaviour
 {
-    static void Create(Vector2 location)
+    public static void Create(Vector2 location,Color color)
     {
-        Vector3 position = new Vector3(location.x, location.y, GridManager.instance.floorOffset);
-        Instantiate(PrefabManager.instance.paintingQuadPrefab,position,Quaternion.identity);
+        Vector3 position = new Vector3(location.x,GridManager.instance.chessOffset+0.5f+0.05f, location.y);
+        Instantiate(PrefabManager.instance.paintingParticle, position, PrefabManager.instance.paintingParticle.transform.rotation);
+        PaintingQuad target=Instantiate(PrefabManager.instance.paintingQuadPrefab,position, PrefabManager.instance.paintingQuadPrefab.transform.rotation).GetComponent<PaintingQuad>();
+        target.color = color;
     }
     public float beginDissolveTime=2f;
     public float endDissolveTime = 5f;
