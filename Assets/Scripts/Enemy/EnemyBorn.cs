@@ -15,7 +15,8 @@ public class EnemyBorn : MonoBehaviour
     public Vector2Int destination;
     [HideInInspector]
     public List<EnemyGroup> groups = new List<EnemyGroup>();
-
+    //敌人波次
+    [SerializeField]
     int Sequence;
 
     [Serializable]

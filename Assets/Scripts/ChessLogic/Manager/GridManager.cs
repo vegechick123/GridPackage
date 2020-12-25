@@ -74,7 +74,9 @@ public class GridManager : Manager<GridManager>
     }
     public GChess[] GetChessesInRange(Vector2Int[] range)
     {
-        return chesses.FindAll(  x=>range.Contains(x.location)  ).ToArray();
+        GChess[] result = chesses.FindAll(x => range.Contains(x.location)).ToArray();
+        //Array.Reverse(result);
+        return result;
     }
     public void AddChess(GChess chess)
     {
@@ -305,11 +307,11 @@ public class GridManager : Manager<GridManager>
         for (int d = beginDistance; d<=maxLength; d++)
         {
             Vector2Int nowpos = d * dir + origin;
-            GChess t = GetChess(nowpos);
-            if (InRange(nowpos) && t!=null)
-            {
+            //GChess t = GetChess(nowpos);
+            //if (InRange(nowpos) && t!=null)
+            //{
                 res.Enqueue(nowpos);
-            }
+            //}
         }
         return res.ToArray();
     }

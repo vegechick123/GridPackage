@@ -16,6 +16,8 @@ public class Projectile : MonoBehaviour
 {
     public ProjectileType type;
     public IReceiveable receiveTarget;
+    /*------------------炮弹伤害----------------------------*/
+    public int damage;
 
     /*-----------------炮击相关参数-------------------*/
     public const float g = 9.8f;

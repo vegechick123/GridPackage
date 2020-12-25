@@ -13,7 +13,7 @@ public class EnemyBlood : MonoBehaviour
     private void Awake()
     {
         lockCamera = Camera.main.transform;
-        //this.gameObject.SetActive(false);
+        this.gameObject.SetActive(false);
         time = 0;
 
         enemy = this.transform.parent.GetComponent<Enemy>();
