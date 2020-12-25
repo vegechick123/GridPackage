@@ -56,11 +56,12 @@ MonoBehaviour:
   AtkRange: 7
   direction: 0
   atkSpeed: 0
-  gatherDeltaTime: 1
+  gatherDeltaTime: 2
   onGatherComplete:
     m_PersistentCalls:
       m_Calls: []
-  AtkInterval: 0.02
+  AtkInterval: 0.1
+  canShoot: 1
 --- !u!136 &9185064738828182600
 CapsuleCollider:
   m_ObjectHideFlags: 0

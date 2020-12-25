@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
 using UnityEngine.Events;
 /// <summary>
@@ -30,7 +32,7 @@ public class GShooterTower : GTower, IReceiveable
     //攻击间隔
     public float AtkInterval = 0.1f;
     [SerializeField]
-    bool canShoot=true;
+    bool canShoot = true;
 
     /*-------------------攻击相关的函数---------------------*/
     /// <summary>
@@ -79,8 +81,9 @@ public class GShooterTower : GTower, IReceiveable
             }
             target = gFloor.gameObject;
             //射击速度设置
-            atkSpeed = (AtkRange - x)*2;
-        }else
+            atkSpeed = (AtkRange - x) * 2;
+        }
+        else
         {
             atkSpeed = AtkRange;
         }
@@ -89,33 +92,77 @@ public class GShooterTower : GTower, IReceiveable
         GameObject origin = PrefabManager.instance.GetProjectilePrefab(projectileType);
         GameObject bullet = Instantiate(origin);
         //射击起点设置
-        bullet.transform.position = this.transform.position + new Vector3(0,1,0);
+        bullet.transform.position = this.transform.position + new Vector3(0, 1, 0);
 
         Projectile pj = bullet.GetComponent<Projectile>();
         //射击更自然，射速跟射击距离有关
-        pj.Shoot( target , atkSpeed );
+        pj.Shoot(target, atkSpeed);
     }
     /// <summary>
     /// 敌人搜索
     /// </summary>
     GameObject EnemySearch()
     {
-        Debug.Log("EnemySearch");
         Vector2Int[] search = GridManager.instance.GetOneRayRange(location, direction.ToVector2(), AtkRange);
+
         GChess[] chesses = GridManager.instance.GetChessesInRange(search);//攻击范围的棋子
-        //检测这些棋子是什么？
+        //获得最近的 可攻击棋子
+        while (true)
+        {
+            GChess chess = SortByDistance(chesses);
+            if (chess == null)
+                return null;
+            //foreach (var chess in chesses)
+            //{
+            if (chess.chessType == ChessType.shooterTower)
+            {
+                return chess.gameObject;
+            }
+            else if (chess.chessType == ChessType.ememy)
+            {
+                return chess.gameObject;
+            }
+            //}
+            //return null;
+            chesses = DelOneChess(chess,chesses);
+        }
+    }
+    /// <summary>
+    /// 距离排序返回最近的
+    /// </summary>
+    /// <returns></returns>
+    GChess SortByDistance(GChess[] chesses)
+    {
+        if (chesses.Length == 0)
+            return null;
+        int[] dis = new int[chesses.Length];
+        int i = 0;
         foreach (var chess in chesses)
         {
-            if (chess.chessType == ChessType.ememy)
+            dis[i] = Power((location - chess.location).x) + Power((location - chess.location).y);
+            i++;
+        }
+        int min = dis[0];
+        int min_index = 0;
+        for (int j = 1; j < dis.Length; j++)
+        {
+            if (dis[j] < min)
             {
-                return chess.gameObject;
-            }
-            else if (chess.chessType == ChessType.shooterTower)
-            {
-                return chess.gameObject;
+                min = dis[j];
+                min_index = j;
             }
         }
-        return null;
+        return chesses[min_index];
+    }
+    GChess[] DelOneChess(GChess chess, GChess[] chesses)
+    {
+        List<GChess> list = new List<GChess>(chesses);
+        list.Remove(chess);
+        return list.ToArray();
+    }
+    int Power(int num)
+    {
+        return num * num;
     }
     /*---------------------------------------------------------------------------*/
 
@@ -128,7 +175,7 @@ public class GShooterTower : GTower, IReceiveable
     {
         ownResourse = GridManager.instance.GetResourcesType(location);
         if (ownResourse == ResourceType.RawMaterial)
-            onGatherComplete.AddListener(() =>Shoot(ProjectileType.RawMaterial,EnemySearch()));
+            onGatherComplete.AddListener(() => Shoot(ProjectileType.RawMaterial, EnemySearch()));
     }
     void Update()
     {
@@ -137,7 +184,7 @@ public class GShooterTower : GTower, IReceiveable
         if (currentTime > gatherDeltaTime)
         {
             onGatherComplete.Invoke();
-            
+
         }
         if (GridManager.instance)
             FaceToward(direction.ToVector2());
@@ -153,7 +200,7 @@ public class GShooterTower : GTower, IReceiveable
         base.BePickUp(player);
         Destroy(gameObject);
         player.PickUp(ProjectileType.RawMaterial);
-        GBuildingBase clone =GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetBuildingBasePrefab(), location).GetComponent<GBuildingBase>();
+        GBuildingBase clone = GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetBuildingBasePrefab(), location).GetComponent<GBuildingBase>();
         clone.currentResourceCount = clone.needResourceCount - 1;
     }
 }

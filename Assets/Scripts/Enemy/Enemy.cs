@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : GChess
+public class Enemy : GChess,IReceiveable
 {
     /*---------------敌人的基础属性面板-----------------*/
     /// <summary>
@@ -10,7 +10,19 @@ public class Enemy : GChess
     /// </summary>
     public float speed;
     //即剩余生命值
-    public int CurrentHealth;
+    [SerializeField]
+    private int currentHealth;
+    public int CurrentHealth
+    {
+        get => currentHealth;
+        set
+        {
+            if (value < 0)
+                currentHealth = 0;
+            else
+                currentHealth = value;
+        }
+    }
     //生命值上限
     public int health;
     /// <summary>
@@ -23,6 +35,11 @@ public class Enemy : GChess
     {
         base.Awake();
         //InitEnemy(new Vector2Int(2,2),1.0f,10);
+    }
+    private void Update()
+    {
+        if (CurrentHealth == 0)
+            Destroy(this.gameObject);
     }
     /// <summary>
     /// 初始化
@@ -123,6 +140,19 @@ public class Enemy : GChess
         }
         return location;
     }
+
     /*--------------------------------------------------------------------*/
     #endregion
+
+    public void Receive(Projectile projectile)
+    {
+        //switch(projectile.type)
+        //{
+        //    case ProjectileType.NormalBullet:CurrentHealth -= 5;this.transform.Find("Blood").gameObject.SetActive(true); break;
+        //    case ProjectileType.BuildingMaterial: CurrentHealth -= 2; this.transform.Find("Blood").gameObject.SetActive(true); break;
+        //    case ProjectileType.RawMaterial: CurrentHealth -= 2; this.transform.Find("Blood").gameObject.SetActive(true); break;
+        //}
+        CurrentHealth -= projectile.damage; this.transform.Find("Blood").gameObject.SetActive(true);
+    }
+
 }

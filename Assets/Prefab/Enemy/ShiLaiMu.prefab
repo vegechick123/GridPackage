@@ -150,7 +150,7 @@ MonoBehaviour:
   navComponent: {fileID: 0}
   moveComponent: {fileID: 0}
   speed: 0
-  CurrentHealth: 0
+  currentHealth: 0
   health: 0
   destination: {x: 0, y: 0}
 --- !u!1 &8636471950949314199
@@ -289,4 +289,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d99daf1c0a265924986dccdc6aa517aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DisableTime: 100
+  DisableTime: 2
