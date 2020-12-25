@@ -27,6 +27,9 @@ public class GShooterTower : GTower, IReceiveable
     public UnityEvent onGatherComplete;
     private float currentTime = 0f;
 
+    //攻击间隔
+    public float AtkInterval = 0.1f;
+    float AtkTime = 0f;
 
     /*-------------------攻击相关的函数---------------------*/
     /// <summary>
@@ -35,8 +38,27 @@ public class GShooterTower : GTower, IReceiveable
     /// <param name="projectile"></param>
     public void Receive(Projectile projectile)
     {
-        Shoot(projectile.Reaction(ownResourse), EnemySearch());
+        StartCoroutine(AtkTimer());
+        if (AtkTime <= 0)
+        {
+            AtkTime = AtkInterval;
+            Shoot(projectile.Reaction(ownResourse), EnemySearch());
+        }
         Destroy(projectile.gameObject);
+    }
+    /// <summary>
+    /// 计时辅助器
+    /// </summary>
+    /// <returns></returns>
+    IEnumerator AtkTimer()
+    {
+        while (true)
+        {
+            AtkTime -= Time.deltaTime;
+            if (AtkTime <= 0)
+                yield break;
+            yield return null;
+        }
     }
     /// <summary>
     /// 朝着对应方向发射炮弹

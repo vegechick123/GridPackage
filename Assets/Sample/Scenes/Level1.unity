@@ -7738,6 +7738,12 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1318851237}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1320481451 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3153382171270993699, guid: b45b44a68340b614790af2ab8d550d59,
+    type: 3}
+  m_PrefabInstance: {fileID: 1340047152657386358}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1329395451
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13143,6 +13149,16 @@ PrefabInstance:
       propertyPath: DirTran
       value: 
       objectReference: {fileID: 1960796147}
+    - target: {fileID: 1340047154115766452, guid: b45b44a68340b614790af2ab8d550d59,
+        type: 3}
+      propertyPath: lockTran
+      value: 
+      objectReference: {fileID: 1320481451}
+    - target: {fileID: 1340047154115766452, guid: b45b44a68340b614790af2ab8d550d59,
+        type: 3}
+      propertyPath: chessType
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 1340047154115766472, guid: b45b44a68340b614790af2ab8d550d59,
         type: 3}
       propertyPath: m_Material
