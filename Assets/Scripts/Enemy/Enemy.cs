@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : GChess
-{ 
+{
     /*---------------敌人的基础属性面板-----------------*/
     /// <summary>
     /// 移动速度
@@ -22,7 +22,7 @@ public class Enemy : GChess
     protected override void Awake()
     {
         base.Awake();
-        InitEnemy(new Vector2Int(2,2),1.0f,10);
+        //InitEnemy(new Vector2Int(2,2),1.0f,10);
     }
     /// <summary>
     /// 初始化
@@ -30,11 +30,26 @@ public class Enemy : GChess
     public void InitEnemy(Vector2Int initPos, float speed,int health)
     {
         location = initPos;
-        // todo: 坐标BUG
+
         transform.localPosition =  GetChessPosition3D(initPos);
 
         this.speed = speed;
         this.health = health;
+        CurrentHealth = health;
+    }
+    /// <summary>
+    /// 初始化
+    /// </summary>
+    public void InitEnemy(Vector2Int initPos,Vector2Int desPos, float speed, int health)
+    {
+        location = initPos;
+        destination = desPos;
+
+        transform.localPosition = GetChessPosition3D(initPos);
+
+        this.speed = speed;
+        this.health = health;
+        CurrentHealth = health;
     }
     /// <summary>
     /// Hack
@@ -52,7 +67,7 @@ public class Enemy : GChess
     #region 移动
     /*-------------------------------移动-----------------------------------*/
     [ContextMenu("MoveTest")]
-    private void MoveTest()
+    public void Move()
     {
         StartCoroutine(MoveActor(destination));
     }
@@ -78,6 +93,8 @@ public class Enemy : GChess
             for (float time = 0; time <= 1; time += speed * Time.deltaTime)
             {
                 transform.position = Vector3.Lerp(localtionPos, nextPos, time);
+                //自动转向
+                transform.forward = Vector3.Slerp(transform.forward , GridManager.instance.GetDirection3D( location - next) , 0.3f);
                 yield return null;
             }
             //更新现在的location,迭代进入下一次移动

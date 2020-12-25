@@ -22,12 +22,22 @@ public class PrefabManager : Manager<PrefabManager>
         public ResourceType type;
         public GameObject prefab;
     }
+    [Serializable]
+    struct EnemyInfo
+    {
+        [ReadOnly]
+        public int id;
+        public GameObject prefab;
+    }
 
     [SerializeField]
     private ProjectileInfo[] projectilePrefab;
 
     [SerializeField]
     private ResourcesInfo[] towerPrefab;
+
+    [SerializeField]
+    private EnemyInfo[] enemyInfo;
 
     [SerializeField]
     private GameObject buildingBasePrefab;
@@ -54,6 +64,13 @@ public class PrefabManager : Manager<PrefabManager>
         return buildingBasePrefab;
     }
 
+    public GameObject GetEnemyPrefabById(int id)
+    {
+        if (id <= 0 || id + 1 > enemyInfo.Length)
+            throw new Exception("Out of Length!");
+        return enemyInfo[id - 1].prefab;
+    }
+
     /// <summary>
     /// 确保编辑器面板的预制体数量正确
     /// </summary>
@@ -71,6 +88,10 @@ public class PrefabManager : Manager<PrefabManager>
         for (int i = 0; i < towerPrefab.Length; i++)
         {
             towerPrefab[i].type = (ResourceType)values.GetValue(i);
+        }
+        for(int i=0;i< enemyInfo.Length;i++)
+        {
+            enemyInfo[i].id = i + 1;
         }
     }
 }

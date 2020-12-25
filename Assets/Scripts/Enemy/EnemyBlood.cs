@@ -21,8 +21,8 @@ public class EnemyBlood : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //this.transform.forward = -lockCamera.forward;
-        this.transform.forward = enemy.transform.forward;
+        this.transform.forward = -lockCamera.forward;
+        //this.transform.forward = enemy.transform.forward;
         this.transform.localScale = new Vector3(((float)enemy.CurrentHealth / (float)enemy.health )* 0.8f, 0.06f, 0.01f);
         time += Time.deltaTime;
         if (time >= DisableTime)
