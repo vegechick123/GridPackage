@@ -152,5 +152,12 @@ public class GShooterTower : GTower, IReceiveable
         if (GridManager.instance)
             FaceToward(direction.ToVector2());
     }
-
+    public override void BePickUp(Player player)
+    {
+        base.BePickUp(player);
+        Destroy(gameObject);
+        player.PickUp(ProjectileType.RawMaterial);
+        GBuildingBase clone =GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetBuildingBasePrefab(), location).GetComponent<GBuildingBase>();
+        clone.currentResourceCount = clone.needResourceCount - 1;
+    }
 }

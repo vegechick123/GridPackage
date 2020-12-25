@@ -3,33 +3,57 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GBuildingBase : GTower,IReceiveable
+public class GBuildingBase : GTower, IReceiveable
 {
     protected GResource ownResource;
     [NonSerialized]
-    protected int currentResourceCount=1;
+    private int m_currentResourceCount = 1;
+    public int currentResourceCount
+    {
+        get { return m_currentResourceCount; }
+        set
+        {
+            m_currentResourceCount = value;
+            RefreshText();
+        }
+    }
     //protected ResourceType ownResource.needMaterialType; 
-    static int normalShooterTowerMaterialCount=2;
-    bool isComplete =false;
+    static int normalShooterTowerMaterialCount = 2;
+    public int needResourceCount
+    {
+        get
+        {
+            if (ownResource == null)
+                return normalShooterTowerMaterialCount;
+            else
+                return ownResource.needMaterialCount;
+        }
+    }
+    bool isComplete = false;
+    TextMesh text;
+    protected override void Awake()
+    {
+        base.Awake();
+        text = GetComponentInChildren<TextMesh>();
+    }
     protected void Start()
     {
         ownResource = GridManager.instance.GetResources(location);
+        RefreshText();
     }
     public void Receive(Projectile projectile)
     {
-        
-        if (ownResource == null||projectile.type == ownResource.needMaterialType)
+
+        if (ownResource == null || projectile.type == ownResource.needMaterialType)
             currentResourceCount++;
         Destroy(projectile.gameObject);
-        if(ownResource==null)
-        {
-            if(currentResourceCount >= normalShooterTowerMaterialCount)
-            {
-                Complete();
-            }
-        }
-        else if (currentResourceCount >= ownResource.needMaterialCount)
+        if (currentResourceCount >= needResourceCount)
             Complete();
+        RefreshText();
+    }
+    void RefreshText()
+    {
+        text.text = $"{currentResourceCount}/{needResourceCount}";
     }
     [ContextMenu("Complete")]
     //所有资源收集完成，转换成对应的建筑
@@ -40,6 +64,16 @@ public class GBuildingBase : GTower,IReceiveable
         isComplete = true;
         Debug.Log("Complete");
         Destroy(gameObject);
-        GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetTowerPrefab(ownResource?ownResource.type:ResourceType.None),location);
+        GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetTowerPrefab(ownResource ? ownResource.type : ResourceType.None), location);
+    }
+    public override void BePickUp(Player player)
+    {
+        base.BePickUp(player);
+        currentResourceCount--;
+        if (currentResourceCount == 0)
+        {
+            Destroy(gameObject);
+        }
+        player.PickUp(ProjectileType.RawMaterial);
     }
 }
