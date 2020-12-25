@@ -7147,6 +7147,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1262343776}
+  - component: {fileID: 1262343777}
   m_Layer: 0
   m_Name: EnemyBorn2
   m_TagString: Untagged
@@ -7168,6 +7169,31 @@ Transform:
   m_Father: {fileID: 156168410}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1262343777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1262343775}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bca0de64d7e5b6f498289f6529bc8759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  standbyTime: 5
+  origin: {x: 3, y: 10}
+  destination: {x: 7, y: 2}
+  groups:
+  - id: 1
+    num: 2
+    refreshTime: 1
+  - id: 0
+    num: 3
+    refreshTime: 5
+  - id: 1
+    num: 8
+    refreshTime: 3
 --- !u!1001 &1293607397
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8982,21 +9008,27 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bca0de64d7e5b6f498289f6529bc8759, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  standbyTime: 0
+  standbyTime: 1.4
   origin: {x: 14, y: 10}
   destination: {x: 7, y: 2}
   groups:
   - id: 1
-    num: 3
+    num: 1
     refreshTime: 1
   - id: 1
-    num: 4
-    refreshTime: 2
+    num: 1
+    refreshTime: 1
   - id: 0
     num: 0
-    refreshTime: 2
+    refreshTime: 1
   - id: 1
-    num: 5
+    num: 1
+    refreshTime: 1
+  - id: 0
+    num: 0
+    refreshTime: 3
+  - id: 1
+    num: 1
     refreshTime: 1
 --- !u!1001 &1520608735
 PrefabInstance:

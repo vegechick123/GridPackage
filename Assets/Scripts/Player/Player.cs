@@ -21,7 +21,6 @@ public class Player : GChess
     private GameObject highLightEdgePrefab;
     private GameObject highLightEdge;
 
-    public Transform lockTran;
 
     protected override void Awake()
     {
@@ -29,8 +28,6 @@ public class Player : GChess
         playerInput = this.GetComponent<PlayerInput>();
         if (DirTran == null)
             DirTran = Camera.main.transform;
-        if (lockTran == null)
-            lockTran = this.transform.GetChild(0);
 
     }
     //void FixedUpdate()
@@ -39,7 +36,11 @@ public class Player : GChess
     //}
     private void Update()
     {
-
+        //postion锁定
+        foreach (Transform _transform in GetAllChilds())
+        {
+            _transform.localPosition = new Vector3(0, _transform.localPosition.y, 0);
+        }
         if (playerInput.Dis > 0.02f)
         {
 
@@ -50,8 +51,6 @@ public class Player : GChess
             //位移
             velocity = this.transform.forward * runSpeed;
             this.transform.position += velocity * Time.deltaTime;
-            //postion锁定
-            this.transform.position = this.lockTran.position;
             //location更新
             location = GridManager.instance.Vector3ToVector2Int(this.transform.position);
             //Direction朝向更新
@@ -120,6 +119,15 @@ public class Player : GChess
             Destroy(conveyObject.gameObject);
         }
         conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType), transform.position + new Vector3(0, conveyYOffset, 0), Quaternion.identity, transform).GetComponent<Projectile>();
+    }
+    Transform[] GetAllChilds()
+    {
+        Queue<Transform> transforms = new Queue<Transform>();
+        for(int i=0;i<transform.childCount;i++)
+        {
+            transforms.Enqueue(transform.GetChild(i));
+        }
+        return transforms.ToArray();
     }
     Vector2Int GetSelectLocation()
     {

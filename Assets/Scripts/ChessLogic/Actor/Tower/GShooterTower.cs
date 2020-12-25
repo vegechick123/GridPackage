@@ -29,7 +29,8 @@ public class GShooterTower : GTower, IReceiveable
 
     //攻击间隔
     public float AtkInterval = 0.1f;
-    float AtkTime = 0f;
+    [SerializeField]
+    bool canShoot=true;
 
     /*-------------------攻击相关的函数---------------------*/
     /// <summary>
@@ -39,9 +40,9 @@ public class GShooterTower : GTower, IReceiveable
     public void Receive(Projectile projectile)
     {
         StartCoroutine(AtkTimer());
-        if (AtkTime <= 0)
+        if (canShoot == true)
         {
-            AtkTime = AtkInterval;
+            canShoot = false;
             Shoot(projectile.Reaction(ownResourse), EnemySearch());
         }
         Destroy(projectile.gameObject);
@@ -52,13 +53,8 @@ public class GShooterTower : GTower, IReceiveable
     /// <returns></returns>
     IEnumerator AtkTimer()
     {
-        while (true)
-        {
-            AtkTime -= Time.deltaTime;
-            if (AtkTime <= 0)
-                yield break;
-            yield return null;
-        }
+        yield return new WaitForSeconds(AtkInterval);
+        canShoot = true;
     }
     /// <summary>
     /// 朝着对应方向发射炮弹

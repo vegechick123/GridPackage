@@ -32,6 +32,10 @@ public class EnemyBorn : MonoBehaviour
         Sequence = 0;
         StartCoroutine(Refresh());
     }
+    /// <summary>
+    /// 按序和时间间隔刷新
+    /// </summary>
+    /// <returns></returns>
     IEnumerator Refresh()
     {
         Sequence = 0;
@@ -58,6 +62,10 @@ public class EnemyBorn : MonoBehaviour
                 yield break;
         }
     }
+    /// <summary>
+    /// 单只生成
+    /// </summary>
+    /// <param name="group"></param>
     void RefreshEnemyByEG(EnemyGroup group)
     {
         if (group.num == 0)

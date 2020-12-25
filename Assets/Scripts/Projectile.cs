@@ -21,6 +21,7 @@ public class Projectile : MonoBehaviour
     public const float g = 9.8f;
 
     public GameObject targetGameObject;
+    Vector3 targetV3;
     [SerializeField]
     private float speed = 10;
     public float Speed
@@ -67,18 +68,24 @@ public class Projectile : MonoBehaviour
     private float time;
     IEnumerator AtkUpdate()
     {
+        targetV3 = targetGameObject.transform.position;
         while (true)
         {
-            if ((transform.position.y <= targetGameObject.transform.position.y 
-                && Math.Abs(transform.position.x - targetGameObject.transform.position.x)< delta
-                 && Math.Abs(transform.position.z - targetGameObject.transform.position.z) < delta
-                )|| transform.position.y < 0
+            if ((transform.position.y <= targetV3.y
+                && Math.Abs(transform.position.x - targetV3.x) < delta
+                 && Math.Abs(transform.position.z - targetV3.z) < delta
+                ) || transform.position.y < 0
                 )
             {
-                //finish
-                HitTarget();
+                if (targetGameObject != null)
+                {
+                    HitTarget();
+                }
+                else
+                    Destroy(this.gameObject);
                 yield break;
             }
+
             time += Time.deltaTime;
             float test = verticalSpeed - g * time;
             transform.Translate(moveDirection.normalized * Speed * Time.deltaTime, Space.World);
@@ -103,29 +110,29 @@ public class Projectile : MonoBehaviour
     /// </summary>
     /// <param name="target"></param>
     /// <param name="Speed"></param>
-    public virtual void Shoot(GameObject target,float Speed)
+    public virtual void Shoot(GameObject target, float Speed)
     {
         this.Speed = Speed;
         Shoot(target);
-        
+
     }
     /*----------------------------------------------------------------------*/
 
     void HitTarget()
     {
-        if (receiveTarget != null)
+        if (receiveTarget != null && this!=null)
         {
             receiveTarget.Receive(this);
         }
         Destroy(gameObject);
     }
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.tag == "Ground")
-        {
-            HitTarget();
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.tag == "Ground")
+    //    {
+    //        HitTarget();
+    //    }
+    //}
     /// <summary>
     /// 炮弹经过拥有资源的发射塔时，会根据对应地的资源发生反应
     /// </summary>
@@ -149,7 +156,7 @@ public class Projectile : MonoBehaviour
                     default:
                         return type;
                 }
-            default:return type;
+            default: return type;
         }
     }
 
