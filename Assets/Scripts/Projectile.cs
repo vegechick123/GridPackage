@@ -87,6 +87,7 @@ public class Projectile : MonoBehaviour
                 }
                 else
                 {
+                    //创建颜料VFX
                     PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), Color.white);
                     Destroy(this.gameObject);
                 }

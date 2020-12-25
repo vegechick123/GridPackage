@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class PaintingQuad : MonoBehaviour
 {
+    /// <summary>
+    /// 在指定位置创造该颜色的VFX
+    /// </summary>
+    /// <param name="location"></param>
+    /// <param name="color"></param>
     public static void Create(Vector2 location,Color color)
     {
         Vector3 position = new Vector3(location.x,GridManager.instance.chessOffset+0.5f+0.05f, location.y);
