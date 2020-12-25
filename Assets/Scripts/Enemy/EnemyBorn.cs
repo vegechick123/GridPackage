@@ -7,6 +7,10 @@ using UnityEngine;
 [DisallowMultipleComponent]
 public class EnemyBorn : MonoBehaviour
 {
+    //敌人起点
+    public Vector2Int[] origin;
+    //敌人终点
+    public Vector2Int[] destination;
     [HideInInspector]
     public List<EnemyGroup> groups = new List<EnemyGroup>();
     [Serializable]

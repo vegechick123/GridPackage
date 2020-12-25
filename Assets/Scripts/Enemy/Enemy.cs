@@ -9,6 +9,9 @@ public class Enemy : GChess
     /// 移动速度
     /// </summary>
     public float speed;
+    //即剩余生命值
+    public int CurrentHealth;
+    //生命值上限
     public int health;
     /// <summary>
     /// 预设的目的地
@@ -28,7 +31,7 @@ public class Enemy : GChess
     {
         location = initPos;
         // todo: 坐标BUG
-        transform.localPosition = GetChessPosition3D(initPos);
+        transform.localPosition =  GetChessPosition3D(initPos);
 
         this.speed = speed;
         this.health = health;
@@ -43,7 +46,7 @@ public class Enemy : GChess
         Vector3 output = GridManager.instance.GetChessPosition3D(vector2);
         //hack
         return new Vector3(output.x,
-            output.y + 1,
+            output.y ,//+ 1,
             output.z);
     }
     #region 移动

@@ -61,7 +61,10 @@ public class GShooterTower : GTower, IReceiveable
             }
             target = gFloor.gameObject;
             //射击速度设置
-            atkSpeed = AtkRange - x + 2;
+            atkSpeed = (AtkRange - x)*2;
+        }else
+        {
+            atkSpeed = AtkRange;
         }
         currentTime = 0;
         Debug.Log(gameObject.name + ":Shoot");
