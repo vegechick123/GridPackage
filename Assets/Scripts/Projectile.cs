@@ -76,7 +76,7 @@ public class Projectile : MonoBehaviour
                 )
             {
                 //finish
-                Destroy(this.gameObject);//todo
+                HitTarget();
                 yield break;
             }
             time += Time.deltaTime;
@@ -108,15 +108,18 @@ public class Projectile : MonoBehaviour
     }
     /*----------------------------------------------------------------------*/
 
-
+    void HitTarget()
+    {
+        if (receiveTarget != null)
+        {
+            receiveTarget.Receive(this);
+        }
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Ground")
         {
-            if (receiveTarget != null)
-            {
-                receiveTarget.Receive(this);
-            }
+            HitTarget();
         }
     }
     /// <summary>

@@ -10,12 +10,14 @@ public class GBuildingBase : GTower,IReceiveable
     protected int currentResourceCount=1;
     //protected ResourceType ownResource.needMaterialType; 
     static int normalShooterTowerMaterialCount=2;
+    bool isComplete =false;
     protected void Start()
     {
         ownResource = GridManager.instance.GetResources(location);
     }
     public void Receive(Projectile projectile)
     {
+        
         if (ownResource == null||projectile.type == ownResource.needMaterialType)
             currentResourceCount++;
         Destroy(projectile.gameObject);
@@ -33,6 +35,10 @@ public class GBuildingBase : GTower,IReceiveable
     //所有资源收集完成，转换成对应的建筑
     public void Complete()
     {
+        if (isComplete)
+            return;
+        isComplete = true;
+        Debug.Log("Complete");
         Destroy(gameObject);
         GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetTowerPrefab(ownResource?ownResource.type:ResourceType.None),location);
     }
