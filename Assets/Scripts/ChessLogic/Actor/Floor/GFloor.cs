@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GFloor : GActor
+public class GFloor : GActor,IReceiveable
 {
     public enum FloorType:byte
     {
@@ -46,5 +46,10 @@ public class GFloor : GActor
     public virtual void OnChessEnter(GChess chess)
     {
         Debug.Log("Chess Enter" + location);
+    }
+
+    public void Receive(Projectile projectile)
+    {
+        Destroy(projectile.gameObject);
     }
 }

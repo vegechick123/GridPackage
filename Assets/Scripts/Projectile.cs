@@ -85,6 +85,9 @@ public class Projectile : MonoBehaviour
             transform.Translate(Vector3.up * test * Time.deltaTime, Space.World);
             float testAngle = -angle + angleSpeed * time;
             transform.eulerAngles = new Vector3(testAngle, transform.eulerAngles.y, transform.eulerAngles.z);
+            //超出世界范围自动删除
+            if (transform.position.y < -10)
+                Destroy(this.gameObject);
             yield return null;
         }
     }

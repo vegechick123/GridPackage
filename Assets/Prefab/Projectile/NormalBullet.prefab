@@ -47,7 +47,7 @@ MonoBehaviour:
   type: 2
   targetGameObject: {fileID: 0}
   speed: 10
-  delta: 0.5
+  delta: 0.1
 --- !u!1001 &1226890733759454787
 PrefabInstance:
   m_ObjectHideFlags: 0

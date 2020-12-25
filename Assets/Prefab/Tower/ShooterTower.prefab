@@ -60,6 +60,7 @@ MonoBehaviour:
   onGatherComplete:
     m_PersistentCalls:
       m_Calls: []
+  AtkInterval: 0.01
 --- !u!136 &9185064738828182600
 CapsuleCollider:
   m_ObjectHideFlags: 0
