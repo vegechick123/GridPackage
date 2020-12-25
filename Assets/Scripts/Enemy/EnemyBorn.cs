@@ -19,6 +19,8 @@ public class EnemyBorn : MonoBehaviour
     [SerializeField]
     int Sequence;
 
+    public bool isEnd;
+
     [Serializable]
     public class EnemyGroup
     {
@@ -30,6 +32,7 @@ public class EnemyBorn : MonoBehaviour
     /*-----------------------敌人自动刷新-----------------------------*/
     private void Awake()
     {
+        isEnd = false;
         Sequence = 0;
         StartCoroutine(Refresh());
     }
@@ -60,7 +63,10 @@ public class EnemyBorn : MonoBehaviour
                 Sequence++;
             }
             else
+            {
+                isEnd = true;
                 yield break;
+            }
         }
     }
     /// <summary>
