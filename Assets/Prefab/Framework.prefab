@@ -845,6 +845,9 @@ MonoBehaviour:
   scale: 0.1
   maxDegreePerSecond: 5
   fade: 0.5
+  floatScale: 0.05
+  floatSpeed: 0.1
+  floatTime: {x: 0, y: 0, z: 0}
 --- !u!1 &3956520010877979980
 GameObject:
   m_ObjectHideFlags: 0
