@@ -59,6 +59,7 @@ MonoBehaviour:
   projectile: 0
   needMaterialCount: 2
   needMaterialType: 0
+  _color: 6
 --- !u!1001 &4011252960484697318
 PrefabInstance:
   m_ObjectHideFlags: 0
