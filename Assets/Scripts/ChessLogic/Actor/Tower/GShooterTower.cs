@@ -189,7 +189,8 @@ public class GShooterTower : GTower, IReceiveable
         currentTime += Time.deltaTime;
         if (currentTime > gatherDeltaTime + Random)
         {
-            this._color = GridManager.instance.GetResources(location)._color;
+           if( GridManager.instance.GetResources(location))
+                this._color = GridManager.instance.GetResources(location)._color;
             onGatherComplete.Invoke();
             Random = UnityEngine.Random.Range(-random, random);
         }
