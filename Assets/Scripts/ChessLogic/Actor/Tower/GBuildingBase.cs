@@ -59,7 +59,7 @@ public class GBuildingBase : GTower, IReceiveable
     {
         for (int i = 0; i < m_renderer.Length; i++)
         {
-            if (m_renderer[i] != null) ;
+            if (m_renderer[i] != null)
             {
                 m_renderer[i].enabled = currentResourceCount >= i;
             }
@@ -88,6 +88,6 @@ public class GBuildingBase : GTower, IReceiveable
         {
             Destroy(gameObject);
         }
-        player.PickUp(ProjectileType.RawMaterial);
+        player.PickUp(ProjectileType.RawMaterial,_color);
     }
 }

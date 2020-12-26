@@ -16,6 +16,19 @@ public enum ProjectileType
 }
 public class Projectile : MonoBehaviour
 {
+    [SerializeField]
+    private Color color;
+    public Color Color
+    {
+        get => color;
+        set
+        {
+            color = value;
+            var mat = this.GetComponentInChildren<MeshRenderer>().material;
+            mat.SetColor("_Color",color);
+            mat.SetColor("_BaseColor", color);
+        }
+    }
     public ProjectileType type;
     public IReceiveable receiveTarget;
     /*------------------炮弹伤害----------------------------*/
@@ -77,6 +90,7 @@ public class Projectile : MonoBehaviour
     private float time;
     IEnumerator AtkUpdate()
     {
+        this.GetComponentInChildren<MeshRenderer>().material.color=color;
         if (targetGameObject.GetComponent<GFloor>())
             targetV3 = targetGameObject.transform.position + new Vector3(0, 1f, 0);
         else
@@ -89,7 +103,7 @@ public class Projectile : MonoBehaviour
                 ) || transform.position.y < 0
                 )
             {
-                PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), Color.red);
+                PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), color);
                 if (targetGameObject != null)
                 {
                     HitTarget();
@@ -122,7 +136,9 @@ public class Projectile : MonoBehaviour
         InitBullet();
         StartCoroutine(AtkUpdate());
         //
-        Instantiate(PrefabManager.instance.shootingParticle, transform.position, PrefabManager.instance.shootingParticle.transform.rotation);
+        GameObject particle = Instantiate(PrefabManager.instance.shootingParticle, transform.position, PrefabManager.instance.shootingParticle.transform.rotation);
+        var main = particle.GetComponent<ParticleSystem>().main;
+        main.startColor = color;
     }
     /// <summary>
     /// 根据射击距离改变射击速度
