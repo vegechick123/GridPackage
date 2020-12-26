@@ -53,9 +53,10 @@ MonoBehaviour:
       m_Calls: []
   navComponent: {fileID: 0}
   moveComponent: {fileID: 0}
-  AtkRange: 7
+  AtkRange: 5
   direction: 0
   atkSpeed: 0
+  random: 1
   gatherDeltaTime: 2
   onGatherComplete:
     m_PersistentCalls:
