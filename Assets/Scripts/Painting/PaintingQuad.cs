@@ -12,7 +12,9 @@ public class PaintingQuad : MonoBehaviour
     public static void Create(Vector2 location,Color color)
     {
         Vector3 position = new Vector3(location.x,GridManager.instance.chessOffset+0.5f+0.05f, location.y);
+
         var main = Instantiate(PrefabManager.instance.paintingParticle, position, PrefabManager.instance.paintingParticle.transform.rotation).GetComponent<ParticleSystem>().main;
+
         main.startColor = color;
         PaintingQuad target=Instantiate(PrefabManager.instance.paintingQuadPrefab,position, PrefabManager.instance.paintingQuadPrefab.transform.rotation).GetComponent<PaintingQuad>();
         target.color = color;
