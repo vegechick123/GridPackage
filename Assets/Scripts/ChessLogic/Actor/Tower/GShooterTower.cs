@@ -15,8 +15,9 @@ public class GShooterTower : GTower, IReceiveable
     public Direction direction;
     //所占有的资源
     public float atkSpeed;
-    // 辅助发射速度的时间变量
-    private float t;
+    // 发射随机变化时间范围
+    public float random;
+    float Random;
     /*----------------------------------------------*/
     public ResourceType ownResourse { get; protected set; }
 
@@ -170,6 +171,7 @@ public class GShooterTower : GTower, IReceiveable
     protected override void Awake()
     {
         base.Awake();
+        Random = 0;
     }
     void Start()
     {
@@ -179,12 +181,11 @@ public class GShooterTower : GTower, IReceiveable
     }
     void Update()
     {
-
         currentTime += Time.deltaTime;
-        if (currentTime > gatherDeltaTime)
+        if (currentTime > gatherDeltaTime + Random)
         {
             onGatherComplete.Invoke();
-
+            Random = UnityEngine.Random.Range(-random, random);
         }
         if (GridManager.instance)
             FaceToward(direction.ToVector2());

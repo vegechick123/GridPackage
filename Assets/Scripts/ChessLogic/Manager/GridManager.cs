@@ -49,7 +49,6 @@ public class GridManager : Manager<GridManager>
     /// </summary>
     /// <param name="location"></param>
     /// <returns></returns>
-    [Obsolete]
     public GChess GetChess(Vector2Int location)
     {
         return chesses.Find(x => location == x.location);
