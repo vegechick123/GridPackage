@@ -75,6 +75,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7635826562936255635, guid: 2da0399a66ac59d4289fc9feb95135e9,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: c1fdb8791d24a5b49868d8a5d72bc539, type: 2}
     - target: {fileID: 919132149155446097, guid: 2da0399a66ac59d4289fc9feb95135e9,
         type: 3}
       propertyPath: m_Name
@@ -162,7 +167,7 @@ PrefabInstance:
     - target: {fileID: 1578742917750663319, guid: cbef8da14c4785a408115c8a2ad7afee,
         type: 3}
       propertyPath: m_Name
-      value: SandFloor
+      value: IceFloor
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cbef8da14c4785a408115c8a2ad7afee, type: 3}
