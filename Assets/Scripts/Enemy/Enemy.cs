@@ -50,6 +50,8 @@ public class Enemy : GChess,IReceiveable
     {
         if (CurrentHealth == 0)
             Destroy(this.gameObject);
+        if (_color == _Color.blue)
+            speed /= 2;
     }
     /// <summary>
     /// 初始化
