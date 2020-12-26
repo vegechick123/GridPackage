@@ -46,6 +46,7 @@ public class GShooterTower : GTower, IReceiveable
         if (canShoot == true)
         {
             canShoot = false;
+            this._color = ColorMixing.instance.AnalysisColor( projectile.Color);
             Shoot(projectile.Reaction(ownResourse), EnemySearch());
         }
         Destroy(projectile.gameObject);
@@ -96,6 +97,8 @@ public class GShooterTower : GTower, IReceiveable
         bullet.transform.position = this.transform.position + new Vector3(0, 1, 0);
 
         Projectile pj = bullet.GetComponent<Projectile>();
+        //改变子弹颜色
+        pj.Color = ColorMixing.instance.GetColor(_color);
         //射击更自然，射速跟射击距离有关
         pj.Shoot(target, atkSpeed);
     }
@@ -177,13 +180,16 @@ public class GShooterTower : GTower, IReceiveable
     {
         ownResourse = GridManager.instance.GetResourcesType(location);
         if (ownResourse == ResourceType.RawMaterial)
+        {
             onGatherComplete.AddListener(() => Shoot(ProjectileType.RawMaterial, EnemySearch()));
+        }
     }
     void Update()
     {
         currentTime += Time.deltaTime;
         if (currentTime > gatherDeltaTime + Random)
         {
+            this._color = GridManager.instance.GetResources(location)._color;
             onGatherComplete.Invoke();
             Random = UnityEngine.Random.Range(-random, random);
         }
@@ -200,7 +206,7 @@ public class GShooterTower : GTower, IReceiveable
     {
         base.BePickUp(player);
         Destroy(gameObject);
-        player.PickUp(ProjectileType.RawMaterial);
+        player.PickUp(ProjectileType.RawMaterial,_color);
         GBuildingBase clone = GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetBuildingBasePrefab(), location).GetComponent<GBuildingBase>();
         clone.currentResourceCount = clone.needResourceCount - 1;
     }

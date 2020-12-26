@@ -31,18 +31,19 @@ public class GResource : GChess, IPickUpAble
     //建筑相关，在这个资源上建造建筑需要的资源类型及其花费//
     public int needMaterialCount = 5;
     public ProjectileType needMaterialType;
-
+    [Space]
+    public _Color _color;
     public void BePickUp(Player player)
     {
         if (canGather)
         {
-            player.PickUp(projectile);
+            player.PickUp(projectile,_color);
         }
         else
         {
             if (player.conveyObject)
             {
-                player.PickUp(player.conveyObject.Reaction(type));
+                player.PickUp(player.conveyObject.Reaction(type),_color);
             }
         }
     }
