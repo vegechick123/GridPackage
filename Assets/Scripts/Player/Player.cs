@@ -112,13 +112,14 @@ public class Player : GChess
         }
         highLightEdge.transform.position = GridManager.instance.GetFloorPosition3D(select);
     }
-    public void PickUp(ProjectileType projectileType)
+    public void PickUp(ProjectileType projectileType,_Color _color)
     {
         if (conveyObject)
         {
             Destroy(conveyObject.gameObject);
         }
         conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType), transform.position + new Vector3(0, conveyYOffset, 0), Quaternion.identity, transform).GetComponent<Projectile>();
+        conveyObject.Color = ColorMixing.instance.GetColor(_color);
     }
     Transform[] GetAllChilds()
     {

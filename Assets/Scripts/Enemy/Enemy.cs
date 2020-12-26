@@ -31,11 +31,19 @@ public class Enemy : GChess,IReceiveable
     [SerializeField]
     private Vector2Int destination;
 
+    public MeshRenderer _renderer;
+
+    public _Color _color;
     //protected IEnumerator coroutines;
     /*---------------------------------------------*/
     protected override void Awake()
     {
         base.Awake();
+        foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
+        {
+            if (mesh.gameObject.name != "Blood")
+                _renderer = mesh;
+        }
         //coroutines = MoveActor(destination);
     }
     private void Update()
@@ -158,7 +166,13 @@ public class Enemy : GChess,IReceiveable
         //    case ProjectileType.RawMaterial: CurrentHealth -= 2; this.transform.Find("Blood").gameObject.SetActive(true); break;
         //}
         CurrentHealth -= projectile.damage; this.transform.Find("Blood").gameObject.SetActive(true);
-        PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), Color.white);
+        PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), projectile.Color);
+        //自己的颜色也变化
+        Color color = ColorMixing.instance.
+            MixColor(_renderer.material.GetColor("_BaseColor"), projectile.Color);
+        _color = ColorMixing.instance.AnalysisColor(color);
+       _renderer.material.SetColor("_BaseColor",color); 
+
     }
 
 }
