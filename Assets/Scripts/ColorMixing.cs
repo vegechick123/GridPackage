@@ -62,13 +62,13 @@ public class ColorMixing : MonoBehaviour
         instance = this;
         dic = new Dictionary<byte, Func<Color>>()
         {
-            {(byte)_Color.blue,()=>{return Color.blue; } },
+            {(byte)_Color.blue,()=>{return new Color(0.155f,0.628f,1,1); } },
             {(byte)_Color.green,()=>{return Color.green; } },
-            {(byte)_Color.orange,()=>{return new Color(1,0.840f,0.25f,1); } },
-            {(byte)_Color.purple,()=>{return new Color(0.981f,0,0.948f,1); } },
-            {(byte)_Color.red,()=>{return Color.red; } },
+            {(byte)_Color.orange,()=>{return new Color(1,0.530f,0,1); } },
+            {(byte)_Color.purple,()=>{return new Color(0.918f,0.514f,1,1); } },
+            {(byte)_Color.red,()=>{return new Color(0.905f,0.328f,0.328f,1); } },
             {(byte)_Color.yellow,()=>{return Color.yellow; } },
-            {(byte)_Color.orgin,()=>{return new Color(); } },
+            {(byte)_Color.orgin,()=>{return new Color(1,1,1,1); } },
         };
     }
     public Color MixColor(Color color1, Color color2)

@@ -150,13 +150,14 @@ public class Player : GChess
         {
             if (conveyObject.type == ProjectileType.RawMaterial)
             {
-                Build(GetSelectLocation());
+                Build(GetSelectLocation(),ColorMixing.instance.AnalysisColor( conveyObject.Color));
                 Destroy(conveyObject.gameObject);
             }
         }
     }
-    void Build(Vector2Int targetLocation)
+    void Build(Vector2Int targetLocation,_Color color)
     {
-        GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetBuildingBasePrefab(), targetLocation);
+        GChess chess = GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetBuildingBasePrefab(), targetLocation);
+        chess.GetComponent<GBuildingBase>()._color = color;
     }
 }

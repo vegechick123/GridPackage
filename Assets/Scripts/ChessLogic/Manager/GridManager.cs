@@ -105,7 +105,7 @@ public class GridManager : Manager<GridManager>
             return;
         if (floors[floor.location.x, floor.location.y] != null)
         {
-            Debug.LogError("同一位置多个Floor");
+            Debug.LogError($"在{floor.location}同一位置多个Floor");
         }
         floors[floor.location.x, floor.location.y] = floor;
     }

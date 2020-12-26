@@ -188,6 +188,10 @@ public class Projectile : MonoBehaviour
             case ProjectileType.NormalBullet:
                 switch (resource)
                 {
+                    case ResourceType.BlueFruit:
+                        return ProjectileType.BlueBullet;
+                    case ResourceType.RedFruit:
+                        return ProjectileType.RedBullet;
                     default:
                         return type;
                 }
