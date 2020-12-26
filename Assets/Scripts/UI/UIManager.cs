@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public int LevelIndex;
     public static UIManager instance;
     //当前使用的UI编号
     [SerializeField]

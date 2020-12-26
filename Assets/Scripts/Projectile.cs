@@ -54,12 +54,17 @@ public class Projectile : MonoBehaviour
     /*---------------------------------炮击的核心-----------------------------------*/
     void InitBullet()
     {
-        float tmepDistance = Vector3.Distance(transform.position, targetGameObject.transform.position);
+        if (targetGameObject.GetComponent<GFloor>())
+            targetV3 = targetGameObject.transform.position + new Vector3(0, 1f, 0);
+        else
+            targetV3 = targetGameObject.transform.position;
+
+        float tmepDistance = Vector3.Distance(transform.position, targetV3);
         float tempTime = tmepDistance / Speed;
         float riseTime, downTime;
         riseTime = downTime = tempTime / 2;
         verticalSpeed = g * riseTime;
-        transform.LookAt(targetGameObject.transform.position);
+        transform.LookAt(targetV3);
 
         float tempTan = verticalSpeed / Speed;
         double hu = Math.Atan(tempTan);
@@ -67,12 +72,15 @@ public class Projectile : MonoBehaviour
         transform.eulerAngles = new Vector3(-angle, transform.eulerAngles.y, transform.eulerAngles.z);
         angleSpeed = angle / riseTime;
 
-        moveDirection = targetGameObject.transform.position - transform.position;
+        moveDirection = targetV3 - transform.position;
     }
     private float time;
     IEnumerator AtkUpdate()
     {
-        targetV3 = targetGameObject.transform.position;
+        if (targetGameObject.GetComponent<GFloor>())
+            targetV3 = targetGameObject.transform.position + new Vector3(0, 1f, 0);
+        else
+            targetV3 = targetGameObject.transform.position;
         while (true)
         {
             if ((transform.position.y <= targetV3.y
@@ -81,7 +89,7 @@ public class Projectile : MonoBehaviour
                 ) || transform.position.y < 0
                 )
             {
-                PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), Color.white);
+                PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), Color.red);
                 if (targetGameObject != null)
                 {
                     HitTarget();

@@ -16794,7 +16794,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Try Again!
+  m_Text: The next level!
 --- !u!222 &798388832
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -45267,6 +45267,12 @@ PrefabInstance:
       propertyPath: shootingParticle
       value: 
       objectReference: {fileID: 5563932910923626388, guid: c014e01233c1a714b8937e92fbdd8e0d,
+        type: 3}
+    - target: {fileID: 3956520010573083713, guid: 769ae75a48cbb964a83aa1da68ec0f41,
+        type: 3}
+      propertyPath: enemyInfo.Array.data[1].prefab
+      value: 
+      objectReference: {fileID: 2942249985305068895, guid: 927fb53c57e4e8447b1b74bbe54f86f7,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 769ae75a48cbb964a83aa1da68ec0f41, type: 3}

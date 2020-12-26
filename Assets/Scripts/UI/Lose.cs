@@ -7,7 +7,7 @@ public class Lose : MonoBehaviour,UIBase
     public void OnClik1()
     {
         Time.timeScale = 1;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UIManager.instance.LevelIndex);
     }
 
     public void OnClik2()

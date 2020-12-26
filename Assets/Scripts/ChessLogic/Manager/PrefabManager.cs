@@ -39,6 +39,7 @@ public class PrefabManager : Manager<PrefabManager>
     [SerializeField]
     private EnemyInfo[] enemyInfo;
 
+    [Space]
     [SerializeField]
     private GameObject buildingBasePrefab;
     [Header("VFX")]
@@ -72,7 +73,7 @@ public class PrefabManager : Manager<PrefabManager>
 
     public GameObject GetEnemyPrefabById(int id)
     {
-        if (id <= 0 || id + 1 > enemyInfo.Length)
+        if (id <= 0 || id  > enemyInfo.Length)
             throw new Exception("Out of Length!");
         return enemyInfo[id - 1].prefab;
     }
