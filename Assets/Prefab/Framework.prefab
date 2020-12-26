@@ -595,6 +595,7 @@ GameObject:
   - component: {fileID: 3956520010573083715}
   - component: {fileID: 3956520010573083714}
   - component: {fileID: 3956520010573083713}
+  - component: {fileID: 7825794345806453568}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -700,6 +701,18 @@ MonoBehaviour:
     type: 3}
   shootingParticle: {fileID: 5563932910923626388, guid: c014e01233c1a714b8937e92fbdd8e0d,
     type: 3}
+--- !u!114 &7825794345806453568
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3956520010573083716}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2536905fdde07a440816fab1180248d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3956520010708617350
 GameObject:
   m_ObjectHideFlags: 0
