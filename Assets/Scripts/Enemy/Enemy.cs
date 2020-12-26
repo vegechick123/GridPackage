@@ -30,11 +30,13 @@ public class Enemy : GChess,IReceiveable
     /// </summary>
     [SerializeField]
     private Vector2Int destination;
+
+    //protected IEnumerator coroutines;
     /*---------------------------------------------*/
     protected override void Awake()
     {
         base.Awake();
-        //InitEnemy(new Vector2Int(2,2),1.0f,10);
+        //coroutines = MoveActor(destination);
     }
     private void Update()
     {
@@ -88,10 +90,6 @@ public class Enemy : GChess,IReceiveable
     {
         StartCoroutine(MoveActor(destination));
     }
-    public void Move(Vector2Int target)
-    {
-        StartCoroutine(MoveActor(target));
-    }
     /// <summary>
     /// 移动
     /// </summary>
@@ -111,7 +109,7 @@ public class Enemy : GChess,IReceiveable
             {
                 transform.position = Vector3.Lerp(localtionPos, nextPos, time);
                 //自动转向
-                transform.forward = Vector3.Slerp(transform.forward , GridManager.instance.GetDirection3D( location - next) , 0.3f);
+                transform.forward = Vector3.Slerp(transform.forward , GridManager.instance.GetDirection3D( location - next) , 0.2f);
                 yield return null;
             }
             //更新现在的location,迭代进入下一次移动
@@ -140,7 +138,14 @@ public class Enemy : GChess,IReceiveable
         }
         return location;
     }
+    //public void Rebirth(Vector2Int initPos)
+    //{
+    //    StopAllCoroutines();
+    //    location = initPos;
 
+    //    transform.localPosition = GetChessPosition3D(initPos);
+    //    Move();
+    //}
     /*--------------------------------------------------------------------*/
     #endregion
 

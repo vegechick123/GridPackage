@@ -86,6 +86,22 @@ public class EnemyBorn : MonoBehaviour
             }
         }
     }
+    ///// <summary>
+    ///// 单只生成
+    ///// </summary>
+    ///// <param name="group"></param>
+    //public void RefreshEnemyById(int id,Vector2Int vector2)
+    //{
+
+    //        GameObject prefab = PrefabManager.instance.GetEnemyPrefabById(id);
+    //        if (prefab != null)
+    //        {
+    //            Instantiate(prefab, this.transform);
+    //        }
+    //    prefab.gameObject.SetActive(true);
+    //    Enemy enemy = prefab.GetComponent<Enemy>();
+    //    enemy.Rebirth(vector2);
+    //}
     /*----------------------------------------------------------------*/
     /// <summary>
     /// 仅供编辑器使用
