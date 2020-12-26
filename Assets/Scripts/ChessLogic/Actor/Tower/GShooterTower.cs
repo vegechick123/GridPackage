@@ -32,6 +32,7 @@ public class GShooterTower : GTower, IReceiveable
     private Animator animator;
     //攻击间隔
     public float AtkInterval = 0.1f;
+    public float atkAnimationTime = 0.4f;
     [SerializeField]
     bool canShoot = true;
 
@@ -63,7 +64,7 @@ public class GShooterTower : GTower, IReceiveable
     void ReadyShoot(ProjectileType projectile)
     {
         animator.SetTrigger("Shoot");
-        this.InvokeAfter(()=>Shoot(projectile,EnemySearch()),AtkInterval);
+        this.InvokeAfter(()=>Shoot(projectile,EnemySearch()),atkAnimationTime);
     }
     /// <summary>
     /// 朝着对应方向发射炮弹

@@ -42,6 +42,8 @@ public class GBuildingBase : GTower, IReceiveable
     protected void Start()
     {
         ownResource = GridManager.instance.GetResources(location);
+        if (ownResource)
+            ownResource.GetComponentInChildren<Renderer>().enabled = false;
         RefreshMesh();
         RefreshText();
     }
@@ -86,6 +88,8 @@ public class GBuildingBase : GTower, IReceiveable
         currentResourceCount--;
         if (currentResourceCount == 0)
         {
+            if (ownResource)
+                ownResource.GetComponentInChildren<Renderer>().enabled = true;
             Destroy(gameObject);
         }
         player.PickUp(ProjectileType.RawMaterial,_color);

@@ -81,7 +81,8 @@ MonoBehaviour:
   onGatherComplete:
     m_PersistentCalls:
       m_Calls: []
-  AtkInterval: 0.5
+  AtkInterval: 0.1
+  atkAnimationTime: 0.4
   canShoot: 1
 --- !u!136 &9185064738828182600
 CapsuleCollider:

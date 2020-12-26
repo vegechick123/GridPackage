@@ -11,7 +11,7 @@ public class PaintingQuad : MonoBehaviour
     /// <param name="color"></param>
     public static void Create(Vector2 location,Color color)
     {
-        Vector3 position = new Vector3(location.x,GridManager.instance.chessOffset+0.5f+0.05f, location.y);
+        Vector3 position = new Vector3(location.x,GridManager.instance.chessOffset+0.55f+Random.Range(0,0.05f), location.y);
 
         var main = Instantiate(PrefabManager.instance.paintingParticle, position, PrefabManager.instance.paintingParticle.transform.rotation).GetComponent<ParticleSystem>().main;
 

@@ -14,7 +14,8 @@ public class Player : GChess
     private PlayerInput playerInput;
     private Vector3 velocity;
 
-    private float conveyYOffset = 0.5f;
+    [SerializeField]
+    private Transform conveyContainer;
     [HideInInspector]
     public Projectile conveyObject;
     [SerializeField]
@@ -118,7 +119,7 @@ public class Player : GChess
         {
             Destroy(conveyObject.gameObject);
         }
-        conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType), transform.position + new Vector3(0, conveyYOffset, 0), Quaternion.identity, transform).GetComponent<Projectile>();
+        conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType), conveyContainer.position, Quaternion.identity, transform).GetComponent<Projectile>();
         conveyObject.Color = ColorMixing.instance.GetColor(_color);
     }
     Transform[] GetAllChilds()
