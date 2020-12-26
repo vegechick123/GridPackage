@@ -72,6 +72,7 @@ MonoBehaviour:
       m_Calls: []
   navComponent: {fileID: 0}
   moveComponent: {fileID: 0}
+  _color: 0
   AtkRange: 5
   direction: 0
   atkSpeed: 0
@@ -80,7 +81,7 @@ MonoBehaviour:
   onGatherComplete:
     m_PersistentCalls:
       m_Calls: []
-  AtkInterval: 0.1
+  AtkInterval: 0.5
   canShoot: 1
 --- !u!136 &9185064738828182600
 CapsuleCollider:
