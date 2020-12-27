@@ -2,9 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Buff:byte
+{
+    normal,
+    frozen,
+    burn,
+    toxicosis,
+    foxed
+}
+
 public class Enemy : GChess,IReceiveable
 {
     /*---------------敌人的基础属性面板-----------------*/
+    public Buff buff;
     /// <summary>
     /// 移动速度
     /// </summary>
@@ -50,8 +60,54 @@ public class Enemy : GChess,IReceiveable
     {
         if (CurrentHealth == 0)
             Destroy(this.gameObject);
-        if (_color == _Color.blue)
+        if (_color == _Color.blue && buff!=Buff.frozen )
+        {
+            buff = Buff.frozen;
             speed /= 2;
+        }
+        if (_color != _Color.blue && buff == Buff.frozen)
+            speed *= 2;
+
+        if (_color == _Color.green && buff != Buff.toxicosis)
+        {
+            buff = Buff.toxicosis;
+            StartCoroutine(Toxicosis());
+        }
+        if (_color != _Color.green && buff == Buff.toxicosis)
+            StopCoroutine(Toxicosis());
+
+        if (_color == _Color.red && buff != Buff.burn)
+        {
+            buff = Buff.burn;
+            CurrentHealth -= 2;
+        }
+
+        if (_color == _Color.yellow && buff != Buff.foxed)
+        {
+            buff = Buff.foxed;
+            StartCoroutine(Foxed());
+        }
+        if (_color != _Color.yellow && buff == Buff.foxed)
+        {
+            StopCoroutine(Foxed());
+            speed = orginSpeed;
+        }
+    }
+    IEnumerator Toxicosis()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1);
+            CurrentHealth -= 1;
+        }
+    }
+    float orginSpeed;
+    IEnumerator Foxed()
+    {
+        orginSpeed = speed;
+        speed = 0.01f;
+        yield return new WaitForSeconds(2);
+        speed = orginSpeed;
     }
     /// <summary>
     /// 初始化

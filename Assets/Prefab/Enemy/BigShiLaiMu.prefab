@@ -161,10 +161,13 @@ MonoBehaviour:
       m_Calls: []
   navComponent: {fileID: 0}
   moveComponent: {fileID: 0}
+  buff: 0
   speed: 0
   currentHealth: 0
   health: 0
   destination: {x: 0, y: 0}
+  _renderer: {fileID: 0}
+  _color: 6
 --- !u!1 &3366840524003468809
 GameObject:
   m_ObjectHideFlags: 0
