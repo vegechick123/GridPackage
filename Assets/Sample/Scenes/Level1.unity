@@ -17044,7 +17044,7 @@ MonoBehaviour:
     prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
       type: 3}
   - type: 3
-    prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
+    prefab: {fileID: 7059776890261152657, guid: ba8ffabc06f3bb749aee3d3753dff3e6,
       type: 3}
   - type: 4
     prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
@@ -44557,7 +44557,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b18f9b362b2cbcb478b215dad57f12f8, type: 3}
   m_Name: 
@@ -45059,7 +45059,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 6a4ee2a1767a93a498e7c5955c39c3be, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 89d172c78463f4d4daa13d57fb584e87, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
