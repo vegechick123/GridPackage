@@ -163,7 +163,7 @@ public class Projectile : MonoBehaviour
     }
     public void Broken()
     {
-        AudioSource.PlayClipAtPoint(SoundManager.instance.GetRandomPigmentSound(), transform.position);
+        //AudioSource.PlayClipAtPoint(SoundManager.instance.GetRandomPigmentSound(), transform.position);
         PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), Color, type != ProjectileType.RawMaterial);
         Destroy(gameObject);
     }    

@@ -107,7 +107,7 @@ public class GShooterTower : GTower, IReceiveable
         pj.Color = ColorMixing.instance.GetColor(_color);
         //射击更自然，射速跟射击距离有关
         pj.Shoot(target, atkSpeed);
-        AudioSource.PlayClipAtPoint(SoundManager.instance.GetRandomShootSound(),transform.position);
+        //AudioSource.PlayClipAtPoint(SoundManager.instance.GetRandomShootSound(),transform.position);
     }
     /// <summary>
     /// 敌人搜索

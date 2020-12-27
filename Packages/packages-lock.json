@@ -30,7 +30,7 @@
       "url": "https://packages.unity.cn"
     },
     "com.unity.formats.alembic": {
-      "version": "1.0.7",
+      "version": "2.1.2",
       "depth": 0,
       "source": "registry",
       "dependencies": {
