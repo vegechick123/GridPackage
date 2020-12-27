@@ -2,6 +2,8 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+
 /// <summary>
 /// 管理各种prefab的Manager
 /// </summary>
