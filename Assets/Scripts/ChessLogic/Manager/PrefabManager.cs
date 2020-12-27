@@ -48,6 +48,7 @@ public class PrefabManager : Manager<PrefabManager>
     [Header("Particle")]
     public GameObject paintingParticle;
     public GameObject shootingParticle;
+    public GameObject buildingParticle;
     /// <summary>
     /// 获得对应ProjectileType的prefab
     /// </summary>

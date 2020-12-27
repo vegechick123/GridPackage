@@ -41,17 +41,22 @@ public class GBuildingBase : GTower, IReceiveable
     }
     protected void Start()
     {
+
         ownResource = GridManager.instance.GetResources(location);
         if (ownResource)
             ownResource.GetComponentInChildren<Renderer>().enabled = false;
         RefreshMesh();
         RefreshText();
+        Instantiate(PrefabManager.instance.buildingParticle, transform.position + PrefabManager.instance.buildingParticle.transform.position, PrefabManager.instance.buildingParticle.transform.rotation);
     }
     public void Receive(Projectile projectile)
     {
 
         if (ownResource == null || projectile.type == ownResource.needMaterialType)
+        {
             currentResourceCount++;
+            Instantiate(PrefabManager.instance.buildingParticle, transform.position+ PrefabManager.instance.buildingParticle.transform.position, PrefabManager.instance.buildingParticle.transform.rotation);
+        }
         Destroy(projectile.gameObject);
         if (currentResourceCount >= needResourceCount)
             Complete();
