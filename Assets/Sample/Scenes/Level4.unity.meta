@@ -1,5 +1,10 @@
 fileFormatVersion: 2
-guid: f6014d30c44038d4fa77801160cdfd91
+<<<<<<< HEAD:Assets/Mesh/alembic.meta
+guid: 71728949b91b0e54cae796a73ae1b71a
+folderAsset: yes
+=======
+guid: b904a01813e49b74e8d3a4d475e1fe44
+>>>>>>> eb7e4a00d6b1f408cab76850a5019bb9687bcfeb:Assets/Sample/Scenes/Level5.unity.meta
 DefaultImporter:
   externalObjects: {}
   userData: 
