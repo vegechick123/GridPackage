@@ -692,7 +692,11 @@ MonoBehaviour:
     prefab: {fileID: 2942249985305068895, guid: 927fb53c57e4e8447b1b74bbe54f86f7,
       type: 3}
   - id: 3
-    prefab: {fileID: 0}
+    prefab: {fileID: 8194152327748865473, guid: 0a04c4f53995dd144a0dc2e5cd21dc4c,
+      type: 3}
+  - id: 4
+    prefab: {fileID: 8194152327748865473, guid: 3022fe68f11521246a650f91e194b5ac,
+      type: 3}
   buildingBasePrefab: {fileID: 5517856087662725843, guid: 8a4ad232db8e064409dd62dddc0ff1dc,
     type: 3}
   paintingQuadPrefab: {fileID: 2624470423566881048, guid: 78cf2d3aba951ea4bb87934b98ee7f78,
