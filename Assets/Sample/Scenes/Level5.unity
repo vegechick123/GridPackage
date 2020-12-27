@@ -17831,6 +17831,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1637216979968913449, guid: d217b94894c26b84e862e96125c848ab,
         type: 3}
+      propertyPath: _color
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637216979968913449, guid: d217b94894c26b84e862e96125c848ab,
+        type: 3}
       propertyPath: location.x
       value: 4
       objectReference: {fileID: 0}
@@ -25937,7 +25942,7 @@ PrefabInstance:
     - target: {fileID: 1637216979968913449, guid: d217b94894c26b84e862e96125c848ab,
         type: 3}
       propertyPath: _color
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1637216979968913449, guid: d217b94894c26b84e862e96125c848ab,
         type: 3}
@@ -43323,6 +43328,12 @@ PrefabInstance:
       propertyPath: ShootingParticle
       value: 
       objectReference: {fileID: 5563932910923626388, guid: c014e01233c1a714b8937e92fbdd8e0d,
+        type: 3}
+    - target: {fileID: 3956520010573083713, guid: 769ae75a48cbb964a83aa1da68ec0f41,
+        type: 3}
+      propertyPath: towerPrefab.Array.data[3].prefab
+      value: 
+      objectReference: {fileID: 7059776890261152657, guid: ba8ffabc06f3bb749aee3d3753dff3e6,
         type: 3}
     - target: {fileID: 3956520010708617347, guid: 769ae75a48cbb964a83aa1da68ec0f41,
         type: 3}
