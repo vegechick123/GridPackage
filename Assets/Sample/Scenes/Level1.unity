@@ -16966,7 +16966,6 @@ GameObject:
   - component: {fileID: 814010805}
   - component: {fileID: 814010806}
   - component: {fileID: 6517464584233156279}
-  - component: {fileID: 814010807}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -17044,7 +17043,7 @@ MonoBehaviour:
     prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
       type: 3}
   - type: 3
-    prefab: {fileID: 7059776890261152657, guid: ba8ffabc06f3bb749aee3d3753dff3e6,
+    prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
       type: 3}
   - type: 4
     prefab: {fileID: 7059776890261152657, guid: 989bf0b839d173343bc3f094154b21f6,
@@ -17078,27 +17077,6 @@ MonoBehaviour:
     type: 3}
   buildingParticle: {fileID: 5563932910923626388, guid: 747b946c28df6eb4d88d0b2695562879,
     type: 3}
---- !u!114 &814010807
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 814010803}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 29e13891d2e4f1048a0bcc2398cf8afa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  pigmentSound:
-  - {fileID: 8300000, guid: 0bcaf1da6f2807b47b19544b3fab8407, type: 3}
-  - {fileID: 8300000, guid: 9e0c6f42fa74cee4b8c685238c592dc1, type: 3}
-  - {fileID: 8300000, guid: 5bfae12e67863414d9dcfddcaf9bdfa7, type: 3}
-  - {fileID: 8300000, guid: ac45797a433e63340a728c8076d0506f, type: 3}
-  shootSound:
-  - {fileID: 8300000, guid: f3870a2b3f3638c42a228ce89f99f552, type: 3}
-  - {fileID: 8300000, guid: fed667bbb09312144b7c2e2e4b0686cf, type: 3}
-  - {fileID: 8300000, guid: 6fa4436a55e59e2479dcf31bde790050, type: 3}
 --- !u!1001 &820423785
 PrefabInstance:
   m_ObjectHideFlags: 0
