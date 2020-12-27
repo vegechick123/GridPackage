@@ -98,7 +98,7 @@ LightmapSettings:
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
-  m_UseShadowmask: 0
+  m_UseShadowmask: 1
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -6292,6 +6292,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RawMaterialResource
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637216979968913463, guid: d217b94894c26b84e862e96125c848ab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d217b94894c26b84e862e96125c848ab, type: 3}
@@ -15247,7 +15252,7 @@ PrefabInstance:
     - target: {fileID: 1637216979968913449, guid: d217b94894c26b84e862e96125c848ab,
         type: 3}
       propertyPath: _color
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1637216979968913449, guid: d217b94894c26b84e862e96125c848ab,
         type: 3}
@@ -15318,6 +15323,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RawMaterialResource (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1637216979968913463, guid: d217b94894c26b84e862e96125c848ab,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d217b94894c26b84e862e96125c848ab, type: 3}
@@ -17335,6 +17345,8 @@ MonoBehaviour:
   paintingParticle: {fileID: 5563932910923626388, guid: 9013b64476f217f4f83483907f20aa47,
     type: 3}
   shootingParticle: {fileID: 5563932910923626388, guid: c014e01233c1a714b8937e92fbdd8e0d,
+    type: 3}
+  buildingParticle: {fileID: 5563932910923626388, guid: 747b946c28df6eb4d88d0b2695562879,
     type: 3}
 --- !u!1001 &820423785
 PrefabInstance:
@@ -31664,7 +31676,7 @@ MonoBehaviour:
     refreshTime: 10
   - id: 0
     num: 0
-    refreshTime: 60
+    refreshTime: 40
   - id: 2
     num: 1
     refreshTime: 0

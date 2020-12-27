@@ -106,7 +106,7 @@ public class Enemy : GChess,IReceiveable
     {
         orginSpeed = speed;
         speed = 0.01f;
-        yield return new WaitForSeconds(2);
+        yield return new WaitForSeconds(0.5f);
         speed = orginSpeed;
     }
     /// <summary>
