@@ -150,14 +150,14 @@ public class Enemy : GChess,IReceiveable
         while (true)
         {
             yield return new WaitForSeconds(1.5f);
-            if (state == State.normal)
+            if (State == State.normal)
             {
                 State = State.soild;
                 yield break;
             }
-            else if (state == State.gas)
+            else if (State == State.gas)
             {
-                state = State.normal;
+                State = State.normal;
             }
         }
     }
@@ -167,14 +167,14 @@ public class Enemy : GChess,IReceiveable
         {
             yield return new WaitForSeconds(1.5f);
             CurrentHealth -= 1;
-            if (state == State.normal)
+            if (State == State.normal)
             {
-                state = State.gas;
+                State = State.gas;
                 yield break;
             }
-            else if (state == State.soild)
+            else if (State == State.soild)
             {
-                state = State.normal;
+                State = State.normal;
             }
         }
     }
@@ -359,5 +359,9 @@ public class Enemy : GChess,IReceiveable
        _renderer.materials[index].SetColor("_BaseColor",color); 
 
     }
-
+    //public override  void OnValidate()
+    //{
+    //    base.OnValidate();
+    //    UpdateState();
+    //}
 }

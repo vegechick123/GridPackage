@@ -617,7 +617,6 @@ MonoBehaviour:
   navComponent: {fileID: 0}
   moveComponent: {fileID: 0}
   state: 0
-  change: 0
   buff: 0
   speed: 0
   currentHealth: 0
