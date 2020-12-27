@@ -161,6 +161,12 @@ public class Projectile : MonoBehaviour
         }
         Destroy(gameObject);
     }
+    public void Broken()
+    {
+        AudioSource.PlayClipAtPoint(SoundManager.instance.GetRandomPigmentSound(), transform.position);
+        PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), Color, type != ProjectileType.RawMaterial);
+        Destroy(gameObject);
+    }    
     //private void OnTriggerEnter(Collider other)
     //{
     //    if (other.tag == "Ground")
