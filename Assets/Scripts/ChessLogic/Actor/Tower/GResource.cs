@@ -36,8 +36,8 @@ public class GResource : GChess, IPickUpAble
     protected override void Awake()
     {
         base.Awake();
-        if(this.transform.Find("gems") && _color != _Color.orgin)
-        this.transform.Find("gems").GetComponent<MeshRenderer>().materials[1].
+        if(type != ResourceType.Iron && _color != _Color.orgin)
+        this.transform.GetChild(0).GetComponent<MeshRenderer>().materials[1].
             SetColor("_BaseColor",ColorMixing.instance.GetColor(_color));
     }
     public void BePickUp(Player player)

@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed727217123500a4e842b25527cf7249, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  location: {x: 1, y: 2}
+  location: {x: 11, y: 0}
   render: {fileID: 0}
   chessType: 2
   eLocationChange:
@@ -57,7 +57,7 @@ MonoBehaviour:
   projectile: 0
   needMaterialCount: 2
   needMaterialType: 0
-  _color: 0
+  _color: 6
 --- !u!1001 &7983810620964838777
 PrefabInstance:
   m_ObjectHideFlags: 0

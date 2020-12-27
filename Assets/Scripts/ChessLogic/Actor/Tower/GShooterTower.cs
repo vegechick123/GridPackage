@@ -197,6 +197,7 @@ public class GShooterTower : GTower, IReceiveable
         if (currentTime > gatherDeltaTime + Random)
         {
            if( GridManager.instance.GetResources(location))
+                if(GridManager.instance.GetResources(location).type==ResourceType.RawMaterial)
                 this._color = GridManager.instance.GetResources(location)._color;
             onGatherComplete.Invoke();
             currentTime = 0;
