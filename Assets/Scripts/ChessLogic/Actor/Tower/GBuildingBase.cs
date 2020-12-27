@@ -44,7 +44,7 @@ public class GBuildingBase : GTower, IReceiveable
     {
 
         ownResource = GridManager.instance.GetResources(location);
-        if (ownResource && ownResource.type!=ResourceType.Iron)
+        if (ownResource)
             ownResource.GetComponentInChildren<Renderer>().enabled = false;
         RefreshMesh();
         RefreshText();

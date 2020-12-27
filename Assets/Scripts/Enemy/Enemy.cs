@@ -224,7 +224,7 @@ public class Enemy : GChess,IReceiveable
         //    case ProjectileType.RawMaterial: CurrentHealth -= 2; this.transform.Find("Blood").gameObject.SetActive(true); break;
         //}        
         CurrentHealth -= projectile.damage; this.transform.Find("Blood").gameObject.SetActive(true);
-        PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), projectile.Color);
+        PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), projectile.Color,projectile.type!=ProjectileType.RawMaterial);
         //自己的颜色也变化
         Color color = ColorMixing.instance.
             MixColor(_renderer.material.GetColor("_BaseColor"), projectile.Color);
