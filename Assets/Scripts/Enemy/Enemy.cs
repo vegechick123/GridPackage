@@ -83,6 +83,9 @@ public class Enemy : GChess,IReceiveable
         if (CurrentHealth == 0)
             Destroy(this.gameObject);
 
+        if (_color == _Color.orgin)
+            return;
+
         if (_color == _Color.blue && buff!=Buff.frozen )
         {
             buff = Buff.frozen;
