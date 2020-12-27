@@ -127,6 +127,9 @@ public class Player : GChess
         {
             Destroy(rd);
         }
+         if (conveyObject.transform.Find("gems") && _color != _Color.orgin)
+            conveyObject.transform.Find("gems").GetComponent<MeshRenderer>().materials[1].
+                SetColor("_BaseColor", ColorMixing.instance.GetColor(_color));
         conveyObject.Color = ColorMixing.instance.GetColor(_color);
     }
     Transform[] GetAllChilds()
