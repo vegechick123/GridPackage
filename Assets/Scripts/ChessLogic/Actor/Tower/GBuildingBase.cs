@@ -38,6 +38,7 @@ public class GBuildingBase : GTower, IReceiveable
     {
         base.Awake();
         text = GetComponentInChildren<TextMesh>();
+        _color = _Color.orgin;
     }
     protected void Start()
     {
@@ -47,7 +48,9 @@ public class GBuildingBase : GTower, IReceiveable
             ownResource.GetComponentInChildren<Renderer>().enabled = false;
         RefreshMesh();
         RefreshText();
-        Instantiate(PrefabManager.instance.buildingParticle, transform.position + PrefabManager.instance.buildingParticle.transform.position, PrefabManager.instance.buildingParticle.transform.rotation);
+        Instantiate(PrefabManager.instance.buildingParticle,
+            transform.position + PrefabManager.instance.buildingParticle.transform.position,
+            PrefabManager.instance.buildingParticle.transform.rotation);
     }
     public void Receive(Projectile projectile)
     {
@@ -85,7 +88,8 @@ public class GBuildingBase : GTower, IReceiveable
         isComplete = true;
         Debug.Log("Complete");
         Destroy(gameObject);
-        GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetTowerPrefab(ownResource ? ownResource.type : ResourceType.None), location);
+        GChess chess= GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetTowerPrefab(ownResource ? ownResource.type : ResourceType.None), location);
+        chess.GetComponent<GShooterTower>()._color = GetComponent<GBuildingBase>()._color;
     }
     public override void BePickUp(Player player)
     {
