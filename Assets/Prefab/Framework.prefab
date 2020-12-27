@@ -692,7 +692,11 @@ MonoBehaviour:
     prefab: {fileID: 2942249985305068895, guid: 927fb53c57e4e8447b1b74bbe54f86f7,
       type: 3}
   - id: 3
-    prefab: {fileID: 0}
+    prefab: {fileID: 8194152327748865473, guid: 0a04c4f53995dd144a0dc2e5cd21dc4c,
+      type: 3}
+  - id: 4
+    prefab: {fileID: 8194152327748865473, guid: 3022fe68f11521246a650f91e194b5ac,
+      type: 3}
   buildingBasePrefab: {fileID: 5517856087662725843, guid: 8a4ad232db8e064409dd62dddc0ff1dc,
     type: 3}
   paintingQuadPrefab: {fileID: 2624470423566881048, guid: 78cf2d3aba951ea4bb87934b98ee7f78,
@@ -725,6 +729,7 @@ GameObject:
   - component: {fileID: 3956520010708617348}
   - component: {fileID: 3956520010708617349}
   - component: {fileID: 3956520010708617346}
+  - component: {fileID: 1307044312642707726}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -769,7 +774,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -828,6 +833,25 @@ MonoBehaviour:
   m_RequiresDepthTexture: 0
   m_RequiresColorTexture: 0
   m_Version: 2
+--- !u!114 &1307044312642707726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3956520010708617350}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b18f9b362b2cbcb478b215dad57f12f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  target: {fileID: 0}
+  scale: 0.1
+  maxDegreePerSecond: 5
+  fade: 0.5
+  floatScale: 0.05
+  floatSpeed: 0.1
+  floatTime: {x: 0, y: 0, z: 0}
 --- !u!1 &3956520010877979980
 GameObject:
   m_ObjectHideFlags: 0

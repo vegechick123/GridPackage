@@ -15,7 +15,7 @@ public class test : MonoBehaviour
     void Update()
     {
         ColorMixing mixing = ColorMixing.instance;
-       Debug.Log( mixing.AnalysisColor
+        Debug.Log( mixing.AnalysisColor
            (mixing.MixColor(mixing.GetColor(color1), mixing.GetColor(color2))));
     }
 }

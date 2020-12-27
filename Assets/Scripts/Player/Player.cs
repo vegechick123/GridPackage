@@ -14,13 +14,14 @@ public class Player : GChess
     private PlayerInput playerInput;
     private Vector3 velocity;
 
-    private float conveyYOffset = 0.5f;
+    [SerializeField]
+    private Transform conveyContainer;
     [HideInInspector]
     public Projectile conveyObject;
     [SerializeField]
     private GameObject highLightEdgePrefab;
     private GameObject highLightEdge;
-
+    private Animator animator;
 
     protected override void Awake()
     {
@@ -28,7 +29,7 @@ public class Player : GChess
         playerInput = this.GetComponent<PlayerInput>();
         if (DirTran == null)
             DirTran = Camera.main.transform;
-
+        animator = GetComponentInChildren<Animator>();
     }
     //void FixedUpdate()
     //{    //取消弹性
@@ -36,11 +37,11 @@ public class Player : GChess
     //}
     private void Update()
     {
-        //postion锁定
-        foreach (Transform _transform in GetAllChilds())
-        {
-            _transform.localPosition = new Vector3(0, _transform.localPosition.y, 0);
-        }
+        ////postion锁定
+        //foreach (Transform _transform in GetAllChilds())
+        //{
+        //    _transform.localPosition = new Vector3(0, _transform.localPosition.y, 0);
+        //}
         if (playerInput.Dis > 0.02f)
         {
 
@@ -101,6 +102,8 @@ public class Player : GChess
                 }
             }
         }
+        //更新动画
+        animator.SetBool("isConvey", conveyObject!=null);
     }
     //处理选中格子的高亮
     void HighLightHandle()
@@ -118,7 +121,12 @@ public class Player : GChess
         {
             Destroy(conveyObject.gameObject);
         }
-        conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType), transform.position + new Vector3(0, conveyYOffset, 0), Quaternion.identity, transform).GetComponent<Projectile>();
+        conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType), conveyContainer.position, Quaternion.identity, transform).GetComponent<Projectile>();
+        
+        foreach(var rd in conveyObject.GetComponentsInChildren<Rigidbody>())
+        {
+            Destroy(rd);
+        }
         conveyObject.Color = ColorMixing.instance.GetColor(_color);
     }
     Transform[] GetAllChilds()

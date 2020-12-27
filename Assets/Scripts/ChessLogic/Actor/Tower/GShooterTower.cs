@@ -29,9 +29,10 @@ public class GShooterTower : GTower, IReceiveable
     [HideInInspector]
     public UnityEvent onGatherComplete;
     private float currentTime = 0f;
-
+    private Animator animator;
     //攻击间隔
     public float AtkInterval = 0.1f;
+    public float atkAnimationTime = 0.4f;
     [SerializeField]
     bool canShoot = true;
 
@@ -47,7 +48,7 @@ public class GShooterTower : GTower, IReceiveable
         {
             canShoot = false;
             this._color = ColorMixing.instance.AnalysisColor( projectile.Color);
-            Shoot(projectile.Reaction(ownResourse), EnemySearch());
+            ReadyShoot(projectile.Reaction(ownResourse));
         }
         Destroy(projectile.gameObject);
     }
@@ -59,6 +60,11 @@ public class GShooterTower : GTower, IReceiveable
     {
         yield return new WaitForSeconds(AtkInterval);
         canShoot = true;
+    }
+    void ReadyShoot(ProjectileType projectile)
+    {
+        animator.SetTrigger("Shoot");
+        this.InvokeAfter(()=>Shoot(projectile,EnemySearch()),atkAnimationTime);
     }
     /// <summary>
     /// 朝着对应方向发射炮弹
@@ -89,7 +95,7 @@ public class GShooterTower : GTower, IReceiveable
         {
             atkSpeed = AtkRange;
         }
-        currentTime = 0;
+        
         Debug.Log(gameObject.name + ":Shoot");
         GameObject origin = PrefabManager.instance.GetProjectilePrefab(projectileType);
         GameObject bullet = Instantiate(origin);
@@ -175,13 +181,14 @@ public class GShooterTower : GTower, IReceiveable
     {
         base.Awake();
         Random = 0;
+        animator = GetComponentInChildren<Animator>();
     }
     void Start()
     {
         ownResourse = GridManager.instance.GetResourcesType(location);
         if (ownResourse == ResourceType.RawMaterial)
         {
-            onGatherComplete.AddListener(() => Shoot(ProjectileType.RawMaterial, EnemySearch()));
+            onGatherComplete.AddListener(()=> { ReadyShoot(ProjectileType.RawMaterial);});
         }
     }
     void Update()
@@ -192,6 +199,7 @@ public class GShooterTower : GTower, IReceiveable
            if( GridManager.instance.GetResources(location))
                 this._color = GridManager.instance.GetResources(location)._color;
             onGatherComplete.Invoke();
+            currentTime = 0;
             Random = UnityEngine.Random.Range(-random, random);
         }
         if (GridManager.instance)

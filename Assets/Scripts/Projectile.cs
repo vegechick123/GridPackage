@@ -103,7 +103,7 @@ public class Projectile : MonoBehaviour
                 ) || transform.position.y < 0
                 )
             {
-                PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), color);
+                
                 if (targetGameObject != null)
                 {
                     HitTarget();
