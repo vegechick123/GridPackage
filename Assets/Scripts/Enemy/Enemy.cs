@@ -8,12 +8,38 @@ public enum Buff:byte
     frozen,
     burn,
     toxicosis,
-    foxed
+    foxed,
+    roused
 }
+public enum State:int
+{
+    normal,
+    gas,
+    soild
+}
+
+
 
 public class Enemy : GChess,IReceiveable
 {
     /*---------------敌人的基础属性面板-----------------*/
+    [SerializeField]
+    State state;
+    public State State
+    {
+        get => state;
+        set
+        {
+            if(value!=state)
+            {
+                CloseState();
+                state = value;
+                UpdateState();
+            }
+        }
+    }
+
+
     public Buff buff;
     /// <summary>
     /// 移动速度
@@ -49,24 +75,25 @@ public class Enemy : GChess,IReceiveable
     protected override void Awake()
     {
         base.Awake();
-        foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
-        {
-            if (mesh.gameObject.name != "Blood")
-                _renderer = mesh;
-        }
         //coroutines = MoveActor(destination);
     }
     private void Update()
     {
+
         if (CurrentHealth == 0)
             Destroy(this.gameObject);
+
         if (_color == _Color.blue && buff!=Buff.frozen )
         {
             buff = Buff.frozen;
+            StartCoroutine(Frozen());
             speed /= 2;
         }
         if (_color != _Color.blue && buff == Buff.frozen)
+        {
+            StopCoroutine(Frozen());
             speed *= 2;
+        }
 
         if (_color == _Color.green && buff != Buff.toxicosis)
         {
@@ -78,9 +105,12 @@ public class Enemy : GChess,IReceiveable
 
         if (_color == _Color.red && buff != Buff.burn)
         {
+            StartCoroutine(Born());
             buff = Buff.burn;
-            CurrentHealth -= 2;
+            CurrentHealth -= 1;
         }
+        if (_color != _Color.red && buff != Buff.burn)
+            StopCoroutine(Born());
 
         if (_color == _Color.yellow && buff != Buff.foxed)
         {
@@ -91,6 +121,58 @@ public class Enemy : GChess,IReceiveable
         {
             StopCoroutine(Foxed());
             speed = orginSpeed;
+        }
+
+
+        if (_color == _Color.orange && buff != Buff.roused)
+        {
+            CurrentHealth+=2;
+            buff = Buff.roused;
+        }
+
+
+        if (_color == _Color.purple && buff != Buff.toxicosis)
+        {
+            buff = Buff.toxicosis;
+            StartCoroutine(Toxicosis());
+        }
+        if (_color != _Color.purple && buff == Buff.toxicosis)
+        {
+            StopCoroutine(Toxicosis());
+        }
+    }
+    #region Buff
+    IEnumerator Frozen()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.5f);
+            if (state == State.normal)
+            {
+                State = State.soild;
+                yield break;
+            }
+            else if (state == State.gas)
+            {
+                state = State.normal;
+            }
+        }
+    }
+    IEnumerator Born()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.5f);
+            CurrentHealth -= 1;
+            if (state == State.normal)
+            {
+                state = State.gas;
+                yield break;
+            }
+            else if (state == State.soild)
+            {
+                state = State.normal;
+            }
         }
     }
     IEnumerator Toxicosis()
@@ -109,6 +191,40 @@ public class Enemy : GChess,IReceiveable
         yield return new WaitForSeconds(0.5f);
         speed = orginSpeed;
     }
+    #endregion
+
+    #region 形态变化
+    void UpdateState()
+    {
+        switch (state)
+        {
+            case State.gas: speed += 0.1f; break;
+            case State.soild:
+                health += health;
+                currentHealth += health;
+                break;
+        }
+        for (int i=0;i<3;i++)
+        {
+            if ((int)state == i)
+                this.transform.GetChild(i).gameObject.SetActive(true);
+            else
+                this.transform.GetChild(i).gameObject.SetActive(false);
+        }
+    }
+    void CloseState()
+    {
+        switch(state)
+        {
+            case State.gas:speed -= 0.1f; break ;
+            case State.soild:
+                health -= health;
+                currentHealth -= health;
+                break;
+        }
+
+    }
+    #endregion
     /// <summary>
     /// 初始化
     /// </summary>
@@ -226,10 +342,18 @@ public class Enemy : GChess,IReceiveable
         CurrentHealth -= projectile.damage; this.transform.Find("Blood").gameObject.SetActive(true);
         projectile.Broken();        
         //自己的颜色也变化
+        int index = 0;
+        foreach (var mesh in GetComponentsInChildren<MeshRenderer>())
+        {
+            if (mesh.gameObject.name != "Blood")
+                _renderer = mesh;
+        }
+        if (state == State.gas)
+           index = 1;
         Color color = ColorMixing.instance.
-            MixColor(_renderer.material.GetColor("_BaseColor"), projectile.Color);
+            MixColor(_renderer.materials[index].GetColor("_BaseColor"), projectile.Color);
         _color = ColorMixing.instance.AnalysisColor(color);
-       _renderer.material.SetColor("_BaseColor",color); 
+       _renderer.materials[index].SetColor("_BaseColor",color); 
 
     }
 
