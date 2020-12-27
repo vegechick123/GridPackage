@@ -50,6 +50,7 @@ public class GFloor : GActor,IReceiveable
 
     public void Receive(Projectile projectile)
     {
+        PaintingQuad.Create(new Vector2(projectile.transform.position.x, projectile.transform.position.z), projectile.Color);
         Destroy(projectile.gameObject);
     }
 }
