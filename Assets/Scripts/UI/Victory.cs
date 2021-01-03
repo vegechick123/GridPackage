@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class Victory : MonoBehaviour, UIBase
 {
     public void OnClik1()
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UIManager.instance.LevelIndex++);
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
     }
 
     public void OnClik2()
