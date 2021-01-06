@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraFloating : MonoBehaviour
 {
     public Transform target;
-    private Vector3 center;
+    private Vector3 center { get { return transform.position; } }
     private Vector3 originEuler;
     private Vector2 originFoward;
     private Vector3 targetEuler;
@@ -18,10 +18,8 @@ public class CameraFloating : MonoBehaviour
     public Vector3 floatTime;//= new Vector3(Random.Range(0,2*Mathf.PI), Random.Range(0, 2 * Mathf.PI), Random.Range(0, 2 * Mathf.PI));
     private void Start()
     {
-        center = transform.position;
         originEuler = transform.rotation.eulerAngles;
         originFoward = new Vector3(transform.forward.x, transform.forward.z).normalized;
-        center = transform.position;
         floatTime = new Vector3(Random.Range(0, 2 * Mathf.PI), Random.Range(0, 2 * Mathf.PI), Random.Range(0, 2 * Mathf.PI));
     }
     private void Update()
@@ -30,7 +28,7 @@ public class CameraFloating : MonoBehaviour
         floatTime.y += Time.deltaTime + Random.Range(0, Time.deltaTime);
         floatTime.z += Time.deltaTime + Random.Range(0, Time.deltaTime);
 
-        transform.position = floatScale*new Vector3(Mathf.Sin(floatTime.x), Mathf.Sin(floatTime.y), Mathf.Sin(floatTime.z)) *Mathf.Sin(floatSpeed*Time.time)+center;
+        //transform.position = floatScale*new Vector3(Mathf.Sin(floatTime.x), Mathf.Sin(floatTime.y), Mathf.Sin(floatTime.z)) *Mathf.Sin(floatSpeed*Time.time)+center;
         SetTargetEuler();
 
         float next = Mathf.Lerp(currentY, targetEuler.y ,fade);

@@ -12,7 +12,8 @@ public enum ProjectileType
     BuildingMaterial,//建筑材料
     NormalBullet,//普通炮弹
     BlueBullet,
-    RedBullet
+    RedBullet,
+    Text
 }
 public class Projectile : MonoBehaviour
 {
@@ -102,8 +103,7 @@ public class Projectile : MonoBehaviour
                  && Math.Abs(transform.position.z - targetV3.z) < delta
                 ) || transform.position.y < 0
                 )
-            {
-                PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), color);
+            {               
                 if (targetGameObject != null)
                 {
                     HitTarget();
@@ -164,7 +164,7 @@ public class Projectile : MonoBehaviour
     public void Broken()
     {
         AudioSource.PlayClipAtPoint(SoundManager.instance.GetRandomPigmentSound(), transform.position);
-        PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), Color, type != ProjectileType.RawMaterial);
+        PaintingQuad.Create(new Vector2(transform.position.x, transform.position.z), Color, type);
         Destroy(gameObject);
     }    
     //private void OnTriggerEnter(Collider other)

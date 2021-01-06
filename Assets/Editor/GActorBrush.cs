@@ -43,7 +43,7 @@ public class GActorBrush : PrefabRandomBrush
                 for(int i=0;i<probability.Length;i++)
                 {
                     sum += probability[i];
-                    if(rand<sum)
+                    if(rand<=sum)
                     {
                         index = i;
                         break;

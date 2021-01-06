@@ -44,11 +44,15 @@ public class PrefabManager : Manager<PrefabManager>
     [Space]
     [SerializeField]
     private GameObject buildingBasePrefab;
+    [Space]
+    [SerializeField]
+    public GameObject textPrefab;
     [Header("VFX")]
     [SerializeField]
     public GameObject paintingQuadPrefab;//{ get; private set; }
     [Header("Particle")]
     public GameObject paintingParticle;
+    public GameObject dustParticle;
     public GameObject shootingParticle;
     public GameObject buildingParticle;
     /// <summary>

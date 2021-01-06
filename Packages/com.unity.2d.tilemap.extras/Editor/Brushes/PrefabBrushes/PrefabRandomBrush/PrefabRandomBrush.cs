@@ -88,7 +88,7 @@ namespace UnityEditor.Tilemaps
 
         protected static float GetPerlinValue(Vector3Int position, float scale, float offset)
         {
-            return Mathf.PerlinNoise((position.x + offset)*scale, (position.y + offset)*scale);
+            return Mathf.Clamp01(Mathf.PerlinNoise((position.x + offset)*scale, (position.y + offset)*scale));
         }
 
         /// <summary>

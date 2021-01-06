@@ -98,12 +98,12 @@ public class Player : GChess
                 Debug.Log(chess);
                 if (chess.chessType == ChessType.shooterTower)
                 {
-                    chess.GetComponent<GShooterTower>().direction = direction;
+                    chess.GetComponent<GShooterTower>().direction = chess.GetComponent<GShooterTower>().direction.ClockwiseNext();
                 }
             }
         }
         //更新动画
-        animator.SetBool("isConvey", conveyObject!=null);
+        animator.SetBool("isConvey", conveyObject != null);
     }
     //处理选中格子的高亮
     void HighLightHandle()
@@ -115,19 +115,19 @@ public class Player : GChess
         }
         highLightEdge.transform.position = GridManager.instance.GetFloorPosition3D(select);
     }
-    public void PickUp(ProjectileType projectileType,_Color _color)
+    public void PickUp(ProjectileType projectileType, _Color _color)
     {
         if (conveyObject)
         {
             Destroy(conveyObject.gameObject);
         }
         conveyObject = Instantiate(PrefabManager.instance.GetProjectilePrefab(projectileType), conveyContainer.position, Quaternion.identity, transform).GetComponent<Projectile>();
-        
-        foreach(var rd in conveyObject.GetComponentsInChildren<Rigidbody>())
+
+        foreach (var rd in conveyObject.GetComponentsInChildren<Rigidbody>())
         {
             Destroy(rd);
         }
-         if (conveyObject.transform.Find("gems") && _color != _Color.orgin)
+        if (conveyObject.transform.Find("gems") && _color != _Color.orgin)
             conveyObject.transform.Find("gems").GetComponent<MeshRenderer>().materials[1].
                 SetColor("_BaseColor", ColorMixing.instance.GetColor(_color));
         conveyObject.Color = ColorMixing.instance.GetColor(_color);
@@ -135,7 +135,7 @@ public class Player : GChess
     Transform[] GetAllChilds()
     {
         Queue<Transform> transforms = new Queue<Transform>();
-        for(int i=0;i<transform.childCount;i++)
+        for (int i = 0; i < transform.childCount; i++)
         {
             transforms.Enqueue(transform.GetChild(i));
         }
@@ -159,14 +159,34 @@ public class Player : GChess
         }
         else
         {
-            if (conveyObject.type == ProjectileType.RawMaterial)
+            switch (conveyObject.type)
             {
-                Build(GetSelectLocation(),ColorMixing.instance.AnalysisColor( conveyObject.Color));
-                Destroy(conveyObject.gameObject);
+                case ProjectileType.RawMaterial:
+                    Build(GetSelectLocation(), ColorMixing.instance.AnalysisColor(conveyObject.Color));
+                    Destroy(conveyObject.gameObject);
+                    break;
+                case ProjectileType.BuildingMaterial:
+                    break;
+                case ProjectileType.NormalBullet:
+                    break;
+                case ProjectileType.BlueBullet:
+                    break;
+                case ProjectileType.RedBullet:
+                    break;
+                case ProjectileType.Text:
+                    Transform target=GridManager.instance.InstansiateChessAt(PrefabManager.instance.textPrefab,GetSelectLocation()).GetComponent<Transform>();
+                    target.transform.position = target.transform.position + new Vector3(0, 0.05f, 0);
+                    target.GetComponent<TextMesh>().text = conveyObject.gameObject.GetComponent<TextMesh>().text;
+                    
+                    target.GetComponent<LevelNumber>().levelNumber = conveyObject.GetComponent<LevelNumber>().levelNumber;
+                    target.GetComponent<LevelNumber>().targetLocation= conveyObject.GetComponent<LevelNumber>().targetLocation;
+                    
+                    Destroy(conveyObject.gameObject);
+                    break;
             }
         }
     }
-    void Build(Vector2Int targetLocation,_Color color)
+    void Build(Vector2Int targetLocation, _Color color)
     {
         GChess chess = GridManager.instance.InstansiateChessAt(PrefabManager.instance.GetBuildingBasePrefab(), targetLocation);
         chess.GetComponent<GBuildingBase>()._color = color;

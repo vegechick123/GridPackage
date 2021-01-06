@@ -21,6 +21,20 @@ public class PaintingQuad : MonoBehaviour
             target.color = color;
         }
     }
+    public static void Create(Vector2 location, Color color, ProjectileType projectileType)
+    {
+        Vector3 position = new Vector3(location.x, GridManager.instance.chessOffset + 0.55f + Random.Range(0, 0.05f), location.y);
+
+        GameObject particle = projectileType == ProjectileType.RawMaterial ? PrefabManager.instance.dustParticle: PrefabManager.instance.paintingParticle;
+
+        var main = Instantiate(particle, position, particle.transform.rotation).GetComponent<ParticleSystem>().main;
+        main.startColor = color;
+        if (projectileType==ProjectileType.NormalBullet)
+        {
+            PaintingQuad target = Instantiate(PrefabManager.instance.paintingQuadPrefab, position, PrefabManager.instance.paintingQuadPrefab.transform.rotation).GetComponent<PaintingQuad>();
+            target.color = color;
+        }
+    }
     public float beginDissolveTime = 2f;
     public float endDissolveTime = 5f;
     public float currentTime = 0f;

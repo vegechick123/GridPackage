@@ -175,6 +175,22 @@ static class GridFunctionUtility
                 throw new Exception("Error Direction");
         }
     }
+    public static Direction ClockwiseNext(this Direction direction)
+    {
+        switch (direction)
+        {
+            case Direction.up:
+                return Direction.right;
+            case Direction.right:
+                return Direction.down;
+            case Direction.down:
+                return Direction.left;
+            case Direction.left:
+                return Direction.up;
+            default:
+                throw new Exception("Error Direction");
+        }
+    }
     public static Direction ToDirection(this Vector2Int direction)
     {
         if (direction.x == 0)
