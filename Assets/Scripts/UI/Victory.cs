@@ -7,7 +7,7 @@ public class Victory : MonoBehaviour, UIBase
 {
     public void OnClik1()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex+1);
+        LevelManager.instance.NextLevel();
     }
 
     public void OnClik2()

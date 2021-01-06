@@ -197,7 +197,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 3140662703333893576}
         m_MethodName: OnClik1
         m_Mode: 1
         m_Arguments:
@@ -828,6 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1d920492dba2804ab2f5135ad7f0013, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionMask: {fileID: 2386144102469609281}
 --- !u!1 &3956520010708617350
 GameObject:
   m_ObjectHideFlags: 0
@@ -1291,6 +1292,7 @@ GameObject:
   - component: {fileID: 8016070343703470757}
   - component: {fileID: 6571190825838325247}
   - component: {fileID: 1490035168329485101}
+  - component: {fileID: 3140662703333893576}
   m_Layer: 5
   m_Name: Image (1)
   m_TagString: Untagged
@@ -1356,6 +1358,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3140662703333893576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6023377971124193420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d67da284c673eb64d8492830d079ea65, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7072278807208300198
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,6 +1945,12 @@ PrefabInstance:
 --- !u!224 &2386144102469609286 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1860299996324325458, guid: cb01f56b4dea77d40a74e19074e11b35,
+    type: 3}
+  m_PrefabInstance: {fileID: 4092740267093413652}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &2386144102469609281 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 1860299996324325461, guid: cb01f56b4dea77d40a74e19074e11b35,
     type: 3}
   m_PrefabInstance: {fileID: 4092740267093413652}
   m_PrefabAsset: {fileID: 0}

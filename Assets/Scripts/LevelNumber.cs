@@ -11,7 +11,10 @@ public class LevelNumber : MonoBehaviour
         GActor self = GetComponent<GActor>();
         if(levelNumber>=0&&self&&self.location == targetLocation)
         {
-            LevelManager.instance.SwitchToLevel(levelNumber);
+            Instantiate(PrefabManager.instance.buildingParticle,
+            transform.position + PrefabManager.instance.buildingParticle.transform.position,
+            PrefabManager.instance.buildingParticle.transform.rotation);
+            this.InvokeAfter(()=>LevelManager.instance.SwitchToLevel(levelNumber),1f);
         }
     }
 }

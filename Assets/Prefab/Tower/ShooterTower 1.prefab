@@ -54,7 +54,7 @@ MonoBehaviour:
   navComponent: {fileID: 0}
   moveComponent: {fileID: 0}
   _color: 0
-  AtkRange: 5
+  AtkRange: 7
   direction: 0
   atkSpeed: 0
   random: 1

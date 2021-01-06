@@ -162,6 +162,8 @@ public class Player : GChess
             switch (conveyObject.type)
             {
                 case ProjectileType.RawMaterial:
+                    if (GridManager.instance.GetFloor(GetSelectLocation()).floorType == GFloor.FloorType.the_enemy_path)
+                        break;
                     Build(GetSelectLocation(), ColorMixing.instance.AnalysisColor(conveyObject.Color));
                     Destroy(conveyObject.gameObject);
                     break;
