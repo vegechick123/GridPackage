@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 public class LevelManager : Manager<LevelManager>
 {
     public Animator transitionMask;
+    public Animator winAnimator;
+    public Animator loseAnimator;
     public int currentLevelNumber { get { return SceneManager.GetActiveScene().buildIndex; } }
     public void SwitchToLevel(int levelNumber)
     {
@@ -19,4 +21,15 @@ public class LevelManager : Manager<LevelManager>
     {
         SwitchToLevel(currentLevelNumber);
     }
+    public void Win()
+    {
+        winAnimator.SetTrigger("In");
+        this.InvokeAfter(NextLevel, 2f);
+    }
+    public void Lose()
+    {
+        loseAnimator.SetTrigger("In");
+        this.InvokeAfter(ReloadLevel, 2f);
+    }
+
 }

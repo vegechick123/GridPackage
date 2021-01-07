@@ -39,8 +39,4 @@ public class UIManager : MonoBehaviour
                 transform.GetChild(i).gameObject.SetActive(false);
         }
     }
-    private void OnValidate()
-    {
-        UpdateUI();
-    }
 }

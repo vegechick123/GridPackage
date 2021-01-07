@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnityEngine;
 
 public class Battle:MonoBehaviour
@@ -37,12 +34,12 @@ public class Battle:MonoBehaviour
     }
     void Win()
     {
-        UIManager.instance.ShowIndex = 1;
+        LevelManager.instance.Win();
     }
     void Lose()
     {
-        UIManager.instance.ShowIndex = 0;
-        Time.timeScale = 0;
+        LevelManager.instance.Lose();
+        //Time.timeScale = 0;
     }
     Transform[] GetAllChilds()
     {
